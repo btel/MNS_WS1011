@@ -1,0 +1,153 @@
+\documentclass[12pt]{article}
+
+\usepackage{amsmath}
+\usepackage{german}
+\usepackage{url}
+\usepackage[dvips]{epsfig}
+
+%\graphicspath{{/home/ritz/Teaching/fcn/fig/}}
+
+%----------------- layout ----------------------------------------
+
+\oddsidemargin=0in
+\textwidth=6in
+\topmargin=-0.7in
+\textheight=9.5in
+\baselineskip=16pt
+\font\mittel=cmr17
+\font\roman=cmr12
+\font\klein=cmr9
+\font\mgross=cmr10
+\newfont{\CAP}{cmcsc10 scaled 900}
+\pagestyle{empty}
+\parindent=0mm
+
+%----------------- macros ----------------------------------------
+\newcommand{\conc}[1]{[{\rm C}]_{\text{#1}}}
+\newcommand{\units}[1]{\text{#1}}
+\newcommand{\kalium}{$\text{K}^+$}
+\newcommand{\natrium}{$\text{Na}^+$}
+\newcommand{\chlor}{$\text{Cl}^-$}
+\newcommand{\wasser}{$\text{H}_2\text{O}$}
+%-----------------------------------------------------------------
+
+
+\begin{document}
+
+
+\parbox{2cm}{
+\epsfig{file = bccnlogo.eps, width = 1.8cm}
+}
+\parbox{11cm}{
+\begin{center}
+\large HUMBOLDT-UNIVERSIT"AT \hskip 0.1 cm ZU \hskip 0.1 cm BERLIN
+\vskip 0.1 true cm
+\mgross BERNSTEIN CENTRE FOR COMPUTATIONAL NEUROSCIENCE
+\end{center}
+}
+\parbox{2cm}
+{
+\hfill
+\epsfig{file = hublogo.eps, width = 1.8cm}
+}
+
+\vskip 0.6 true cm
+
+\leftline{\CAP Humboldt-Universit"at zu Berlin 
+\hfill Phone: 030/2093-9110}
+\leftline{\CAP Philippstr. 13 House 6
+              \hfill Fax: 030/2093-6771}
+\leftline{\CAP \hfill webpage: http://www.bccn-berlin.de/}
+
+
+
+
+\vskip 0.8 true cm
+\centerline{\bf Models of Neural Systems I, WS 2010/11}
+\centerline{\bf Computer Practical 1}
+
+
+\vskip 0.8 true cm
+{\bf First steps in Python}
+
+\medskip
+Python is a modern high-level programming language. In contrast to C/C++ and Java, Python is an interpreted language which means that Python programs (also called scripts) don't have to be compiled. It makes programming Python very quick and interactive. It also allows you to see immediately the results of all operations, analyse them or further process them. Here you will learn the basic concepts of Python.\\
+\begin{enumerate}
+\item  Open an interactive shell. Implement  a simple (!) calculator:
+\begin{verbatim}
+a = 3
+b = 4
+print 'a+b=',a+b
+\end{verbatim}
+Open your favourite editor, paste the code and save it as \texttt{calc.py}. Run the script from the Unix shell with the command: \texttt{python calc.py}.\\ 
+%Python shell, scripts
+\item \textbf{Data structures}. Create variables containing: 
+a number, a string and a list. Using introspection find out what methods are available for these structures.\\
+%data structures, classes, introspection
+\item \textbf{Functions}. Define a function printing elements of Fibbonacci series smaller than \textit{N}:
+$$F(n):=  
+  \begin{cases}
+    0             & \mbox{if } n = 0; \\
+    1             & \mbox{if } n = 1; \\
+    F(n-1)+F(n-2) & \mbox{if } n > 1. \\
+   \end{cases}$$
+
+To solve the problem you can use recursion (i.e. function calling
+itself). 
+
+Write a documentation for your function and  a simple test which calls
+the function with several predefined arguments and compares the result to
+a hard-coded value (e.g. F(0)=0, F(1)=1, F(3)=3, etc.).
+% defining functions, indentation, flow control (while loop), doc string,  recurssion
+\item \textbf{For loop and list comprehensions.} 
+
+        Generate following sequences:
+
+        \begin{itemize}
+            \item odd numbers from 1 to 11,
+            \item letters from ''a'' to ''k'',
+            \item 10 first powers of 2 (i.e. 2, 4,
+                8\dots),
+        \end{itemize}
+
+
+\end{enumerate}
+
+{\bf Generating reports}
+
+You will be asked to hand in solution to your exercises (starting next
+week). The easiest way to do it is to use Python package called
+\texttt{pyreport}. To generate a report call simply 
+\begin{verbatim}
+pyreport source_file.py
+\end{verbatim}
+
+from the command line (not Python shell) where \texttt{source\_file.py} is a
+file containing your Python code. You can easily add comments, LaTeX
+formula and graphs to your code (see \texttt{pyreport} webpage).
+Please use these features extensively!
+
+\medskip
+{\bf Links}
+\begin{itemize}
+    \item Python Tutorial: \url{http://docs.python.org/tutorial/}
+    \item Python Scientific: 
+        \url{https://portal.g-node.org/python-autumnschool/_media/pythonscientific.pdf}
+    \item  \texttt{pyreport} Tips and Tricks:
+        \url{http://neuroscience.telenczuk.pl/?page_id=169}
+\end{itemize}
+
+
+\vfill
+\centerline{\CAP Contact}
+\CAP
+
+Richard Kempter \hfill Phone: 2093-8925 \hfill
+Email: r.kempter(at)biologie.hu-berlin.de \\
+Robert Schmidt \hfill Phone: 2093-8926 \hfill
+Email: r.schmidt(at)biologie.hu-berlin.de \\
+Bartosz Telenczuk\hfill Phone: 2093-8838 \hfill
+Email: b.telenczuk(at)biologie.hu-berlin.de \\
+
+\end{document}
+ 
