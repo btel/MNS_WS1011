@@ -1,4 +1,4 @@
-\documentclass[12pt]{article}
+\documentclass[12pt, a4]{article}
 
 \usepackage{amsmath}
 \usepackage{german}
@@ -71,34 +71,66 @@
 {\bf First steps in Python}
 
 \medskip
-Python is a modern high-level programming language. In contrast to C/C++ and Java, Python is an interpreted language which means that Python programs (also called scripts) don't have to be compiled. It makes programming Python very quick and interactive. It also allows you to see immediately the results of all operations, analyse them or further process them. Here you will learn the basic concepts of Python.\\
+Python is a modern high-level programming language. In contrast to
+C/C++ and Java, Python is an interpreted language, which means that
+Python programs (also called scripts) don't have to be compiled. It
+makes programming Python very quick and interactive. It also allows
+you to see immediately the results of all operations, analyse them or
+further process them. Here you will learn the basic concepts of
+Python.\\
+
 \begin{enumerate}
-\item  Open an interactive shell. Implement  a simple (!) calculator:
+\item  Open an interactive shell (we recommend to use
+    \texttt{ipython}, see below for a short introduction). Implement  a simple (!) calculator:
 \begin{verbatim}
 a = 3
 b = 4
 print 'a+b=',a+b
 \end{verbatim}
-Open your favourite editor, paste the code and save it as \texttt{calc.py}. Run the script from the Unix shell with the command: \texttt{python calc.py}.\\ 
+Open your favourite editor, paste the code and save it as
+\texttt{calc.py}. Run the script within the \texttt{ipython}
+shell (using \texttt{\%run} command, see also below).\\
+
 %Python shell, scripts
-\item \textbf{Data structures}. Create variables containing: 
-a number, a string and a list. Using introspection find out what methods are available for these structures.\\
+\item \textbf{Data structures}.
+    
+    \begin{enumerate}
+        \item Create variables containing: a number,
+    a string and a list. 
+        \item Find out what methods are available for strings and
+            lists (use python \texttt{dir} function).
+            \textit{Hint:}
+    IPython offers convenient tab-completion which can be used to look
+    up methods names.
+         \item Try adding two lists and two strings together. What is
+             the resulting data?
+\end{enumerate}
 %data structures, classes, introspection
-\item \textbf{Functions}. Define a function printing elements of Fibbonacci series smaller than \textit{N}:
-$$F(n):=  
-  \begin{cases}
-    0             & \mbox{if } n = 0; \\
-    1             & \mbox{if } n = 1; \\
-    F(n-1)+F(n-2) & \mbox{if } n > 1. \\
-   \end{cases}$$
+\item \textbf{Functions}. 
+    
+\begin{enumerate} \item  Write a function
+    which returns first $N$ elements of Fibbonacci series that
+    is defined by the following recursive formula:
+            
+\begin{equation}
+F(n)=F(n-1)+F(n-2),\rm{ for}\, n\geq2. 
+\end{equation}
+The first elements of the series are $F(0)=0$ and
+$F(1)=1$.
 
-To solve the problem you can use recursion (i.e. function calling
-itself). 
+To solve the problem, you can either use recursion (i.e. a function calling
+itself) or a for-loop.
 
-Write a documentation for your function and  a simple test which calls
-the function with several predefined arguments and compares the result to
-a hard-coded value (e.g. F(0)=0, F(1)=1, F(3)=3, etc.).
-% defining functions, indentation, flow control (while loop), doc string,  recurssion
+\item \textit{Documenting your code.} Write a documentation for your
+    function.
+    
+\item \textit{Testing your code.} Test the function with several
+    predefined arguments and compares its result to a hard-coded value
+    (e.g. F(0)=0, F(1)=1, F(3)=3, etc.).
+% defining functions, indentation, flow control (while loop), doc
+% string,  recurssion
+\end{enumerate}
+
 \item \textbf{For loop and list comprehensions.} 
 
         Generate following sequences:
@@ -113,19 +145,25 @@ a hard-coded value (e.g. F(0)=0, F(1)=1, F(3)=3, etc.).
 
 \end{enumerate}
 
-{\bf Generating reports}
+\vskip 0.8 true cm
+{\bf IPython}
 
-You will be asked to hand in solution to your exercises (starting next
-week). The easiest way to do it is to use Python package called
-\texttt{pyreport}. To generate a report call simply 
-\begin{verbatim}
-pyreport source_file.py
-\end{verbatim}
+\medskip
+In order to make programming in Python more efficient we recommend you
+to use \texttt{ipython}. IPython is an extended interactive shell (a
+replacement for \texttt{python}) which supports advanced line editing
+(history, tab completion) and special commands (magic commands). The
+list of the most commonly used magic commands is below: \\
 
-from the command line (not Python shell) where \texttt{source\_file.py} is a
-file containing your Python code. You can easily add comments, LaTeX
-formula and graphs to your code (see \texttt{pyreport} webpage).
-Please use these features extensively!
+\texttt{\%magic} -- a full list of magic functions, \\
+\texttt{\%hist} -- show input history, \\
+\texttt{\%run} -- run an external python script inside IPython, \\
+\texttt{\%edit} -- open an external editor (default \texttt{vim}), \\
+\texttt{\%pdb} -- run a debugger when an error occurs, \\
+\texttt{\%cpaste} -- paste Python code (for example from clipboard),\\
+\texttt{cmd?} -- print a documentation of a \texttt{cmd}, \\
+\texttt{cmd??} -- print a documentation of a \texttt{cmd} together
+with the source code.\\
 
 \medskip
 {\bf Links}
@@ -133,8 +171,6 @@ Please use these features extensively!
     \item Python Tutorial: \url{http://docs.python.org/tutorial/}
     \item Python Scientific: 
         \url{https://portal.g-node.org/python-autumnschool/_media/pythonscientific.pdf}
-    \item  \texttt{pyreport} Tips and Tricks:
-        \url{http://neuroscience.telenczuk.pl/?page_id=169}
 \end{itemize}
 
 
@@ -142,12 +178,13 @@ Please use these features extensively!
 \centerline{\CAP Contact}
 \CAP
 
-Richard Kempter \hfill Phone: 2093-8925 \hfill
+Urs Bergmann \hfill ubergmann@fias.uni-frankfurt.de \\ 
+Matthias Guggenmos\hfill Email: matthias.guggenmos@bccn-berlin.de\\
+\underline{Richard Kempter} \hfill Phone: 2093-8925 \hfill
 Email: r.kempter(at)biologie.hu-berlin.de \\
 Robert Schmidt \hfill Phone: 2093-8926 \hfill
 Email: r.schmidt(at)biologie.hu-berlin.de \\
 Bartosz Telenczuk\hfill Phone: 2093-8838 \hfill
 Email: b.telenczuk(at)biologie.hu-berlin.de \\
-
 \end{document}
  

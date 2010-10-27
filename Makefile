@@ -1,4 +1,4 @@
-FILES  = blatt1.pdf 
+FILES  = blatt1.pdf blatt2.pdf 
 
 all : ${FILES}
 
@@ -6,5 +6,7 @@ all : ${FILES}
 	latex $<
 
 %.pdf : %.tex
-	pdflatex $<
-	pdflatex $<
+	
+	latex $<
+	latex $<
+	dvipdf $(basename $<)
