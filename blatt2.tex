@@ -2,8 +2,7 @@
 
 \usepackage{amsmath}
 \usepackage{german}
-\usepackage{url}
-\usepackage[dvips]{epsfig}
+\usepackage{graphicx}
 
 %\graphicspath{{/home/ritz/Teaching/fcn/fig/}}
 
@@ -34,9 +33,8 @@
 
 \begin{document}
 
-
 \parbox{2cm}{
-\epsfig{file = bccnlogo.eps, width = 1.8cm}
+\includegraphics[width=1.8cm]{bccnlogo}
 }
 \parbox{11cm}{
 \begin{center}
@@ -48,7 +46,7 @@
 \parbox{2cm}
 {
 \hfill
-\epsfig{file = hublogo.eps, width = 1.8cm}
+\includegraphics[width=1.8cm]{hublogo}
 }
 
 \vskip 0.6 true cm
@@ -72,158 +70,139 @@
 
 \begin{enumerate}
 
-\item \textbf{Python modules}
+    \item \textbf{Python modules}
 
-Python functions are usually organized into modules, which eases a lot
-the managing of projects. Here you will learn how to write and use
-simple modules. 
-
-\begin{enumerate}
- \item Write your Fibonacci function into a file \texttt{mymodule.py} (you can also choose another name).
- \item Import \texttt{mymodule} module into \texttt{ipython}     shell and run the  Fibonacci function, like this:
-  \begin{verbatim}
-   import mymodule
-   mymodule.fib(10)
-  \end{verbatim} 
- where \texttt{fib} is the name of your function.
- \item Try alternative forms of \texttt{import}:
- \begin{verbatim}
-  import mymodule as my
-  from mymodule import fib
-  from mymodule import *
- \end{verbatim} 
-  Note the differences between the three cases.
- \item (Optional) It is also possible to write a \texttt{main} function which will be called when the module is run as a script (for example like that: \texttt{python mymodule.py}). The simplest function looks like that:
-\begin{verbatim}
-   ...
-   def main():
-       fib_series = mymodule.fib(10)
-       print "Fibonacci series:", fib_series
-   if __name__ == '__main__':
-       main()
-  \end{verbatim} 
-\end{enumerate}
-
-\item \textbf{Numerical Python} (NumPy) \\
-Standard version of Python does not provide any functions for
-efficient numerical computation. However the \texttt{numpy} module
-extends its functionality into this area. It includes optimized
-algorithms for creation and manipulation of numerical arrays, basic
-linear algebra operations and others.
-
-\begin{enumerate}
- \item Import \texttt{numpy} (for example, \texttt{import numpy as
-     np})
- \item Create the following arrays: integers from 0 to 99
-     (\texttt{np.arange}), the sequence $\lbrace5.1, 5.2, 5.3, ...,
-     15.0\rbrace$ (\texttt{np.arange}), 5x10 matrix of zeros or ones
-     (\texttt{np.zeros}/\texttt{np.ones}), 5x5 identity matrix
-     (\texttt{np.eye})
- \item Define two 2D arrays:
-$$
-A=\left(
-\begin{array}{ccc}
-1 & 2 & 3 \\
-2 & 1 & 2 \\
-3 & 2 & 1 \\
-\end{array}
-\right) \;
-B=\left(
-\begin{array}{ccc}
-0 & 2 & 1 \\
-3 & 0 & 2 \\
-1 & 3 & 0 \\
-\end{array}
-\right)
-$$
-
-Multiply the array $A$ by a scalar, mulitply arrays $A$ and $B$
-element-wise, calculate a matrix dot product $A$ and $B$ (\texttt{np.dot}).
-\item Multiply element-wise column 1 of matrix A with row 2 of matrix
-    B using slice notation.
-\end{enumerate}
-
-\item \textbf{Basic plotting} (Pylab)
-    \label{eq:pylab}
-
-    Pylab (aka matplotlib) is a Python plotting library. Its  capabilities and interface are quite similar to the ones offered by Matlab. It can be used  to display the results of your calculations, create publication quality figures and can be embedded in graphical user interfaces.
-
-A simple plot in pylab can be drawn with the following example (taken from matplotlib tutorial):
-\begin{verbatim}
-import pylab as plt
-plt.figure()
-plt.plot([1,2,3,4])
-plt.show()
-\end{verbatim} 
-
-\begin{enumerate}
- \item Modify the above code, so that only points are drawn (without connecting lines).
- \item Label x-axis, y-axis and add the title to the figure
-     (\texttt{plt.xlabel}, \texttt{plt.ylabel}, \texttt{plt.title}).
- \item Split the figure vertically into two panels (use
-     \texttt{plt.subplot} command). In the upper panel plot the data with
-     lines and in the lower panel with bars (\texttt{plt.bar}).
- \item Save the figure in your home directory (you can use an icon
-     from the figure's toolbar or \texttt{plt.savefig} function)
-\end{enumerate}
-
-\item \textbf{Activation functions}
-    \label{ex:function}
-    
-    Plot the following functions in one plot. Add the axes labels and
-    a legend to the plot. Give an interpretation for the parameters of
-    the functions.
-
+    Python functions are usually organized into modules, which eases a lot the managing of projects. Here you will learn how to write and use simple modules.
     \begin{enumerate}
-        \item Sigmoid function:
-            $$f(x)=\frac{1}{1+\exp(-ax)},$$ 
-            where $a$ is a free parameter.
-        \item Hyperbolic tangent function:
-            $$g(x)=\tanh(x).$$
-        \item Threshold function:
-            \begin{equation*}
-                h(x)=\begin{cases}1 & \text{if $x\geq0$} \\
-                                  0 & \text{if $x<0$.}
-                    \end{cases}
-            \end{equation*}
-        \item Piecewise linear:
-            \begin{equation*}
-                i(x)=\begin{cases} \frac{1}{2}& \text{if $x\geq\frac{1}{2}$} \\
-                    x & \text{if $\frac{1}{2}>x>-\frac{1}{2}$} \\
-                    -\frac{1}{2} & \text{if $x\leq-\frac{1}{2}$.}
-                    \end{cases}
-            \end{equation*}
-
+        \item Write your Fibonacci function into a file \texttt{mymodule.py} (you can also choose another name).
+        \item Import \texttt{mymodule} module into the
+            \texttt{ipython} shell and run your\texttt{fib} function
+            from previous sheet:
+        \begin{verbatim}
+            import mymodule
+            mymodule.fib(10)
+        \end{verbatim} 
+        \item Try alternative forms to \texttt{import} functions:
+        \begin{verbatim}
+            import mymodule as my
+            from mymodule import fib
+            from mymodule import *
+            reload(my)
+        \end{verbatim}
+        Investigate the differences between these cases.
+    \item When you work in the interactive \texttt{ipython} shell also
+        the magic function \texttt{\%run} may prove useful.
+            Find out form documentation what the function does and try
+            it out.
+        \item (Optional) It is also possible to write a \texttt{main} function which will be called when the module is run as a script (for example like that: \texttt{python mymodule.py}). The simplest function looks like that:
+        \begin{verbatim}
+            ...
+            def main():
+                fib_series = mymodule.fib(10)
+                print "Fibonacci series:", fib_series
+            if __name__ == '__main__':
+                main()
+        \end{verbatim}
     \end{enumerate}
 
-    Export the figure to a file.
-
-\item \textbf {Report}
-
-    Generate a single PDF file including your name(s), student
-    identification number(s), figures from Exercises \ref{eq:pylab} and
-    \ref{ex:function}, captions, a short comment to your solutions and
-    a full source code. To do that you can use  \texttt{pyreport} (see the
-    course homepage), LaTeX or any other word processing program with
-    PDF export. State precisely with each answer which exercise it is
-    related to (you can also copy the text of the exercise at the top
-    of your solution). Please attach the source code in raw text
-    format as well (as \texttt{*.py} file).
+    \item \textbf{Numerical Python} (NumPy) \\
+    Standard version of Python does not provide any functions for
+    efficient numerical computation. However the \texttt{scipy} module
+    extends its functionality into this area. It includes optimized
+    algorithms for creation and manipulation of numerical arrays, basic
+    linear algebra operations and others.
     
-    \textbf{Send the report to your tutor not later
-    than Monday, Nov 8nd, 9am!} \end{enumerate}
+    \begin{enumerate}
+        \item Import \texttt{numpy} (for example, \texttt{import numpy as np})
+        \item Create the following arrays: integers from 0 to 99 (\texttt{np.arange}), the sequence $\lbrace5.1, 5.2, 5.3, ...,15.0\rbrace$ (\texttt{np.arange}), 5x10 matrix of zeros or ones (\texttt{np.zeros}/\texttt{np.ones}), 5x5 identity matrix (\texttt{np.eye})
+        \item Define two 2D arrays:
+        $$
+        A=\left(
+        \begin{array}{ccc}
+        1 & 2 & 3 \\
+        2 & 1 & 2 \\
+        3 & 2 & 1 \\
+        \end{array}
+        \right) \;
+        B=\left(
+        \begin{array}{ccc}
+        0 & 2 & 1 \\
+        3 & 0 & 2 \\
+        1 & 3 & 0 \\
+        \end{array}
+        \right)
+        $$
+        
+        Multiply the array $A$ by a scalar, mulitply arrays $A$ and $B$ element-wise, calculate a matrix dot product $A$ and $B$ (\texttt{np.dot}).
+        \item Multiply element-wise column 1 of matrix A with row 2 of matrix B using slice notation.
+    \end{enumerate}
+
+    \item \textbf{Basic plotting} (Pylab)
+    \label{ex:pylab}
+    
+    Pylab (aka matplotlib) is a Python plotting library. Its  capabilities and interface are quite similar to the ones offered by Matlab. It can be used  to display the results of your calculations, create publication quality figures and can be embedded in graphical user interfaces.
+    
+    A simple plot in pylab can be drawn with the following example (taken from matplotlib tutorial):
+    \begin{verbatim}
+        import pylab as plt
+        plt.figure()
+        plt.plot([1,2,3,4])
+        plt.show()
+    \end{verbatim} 
+
+    \begin{enumerate}
+        \item Modify the above code, so that only points are drawn (without connecting lines).
+        \item Label x-axis, y-axis and add the title to the figure (\texttt{plt.xlabel}, \texttt{plt.ylabel}, \texttt{plt.title}).
+        \item Split the figure vertically into two panels (use \texttt{plt.subplot} command). In the upper panel plot the data with lines and in the lower panel with bars (\texttt{plt.bar}).
+        \item Save the figure in your home directory (you can use an icon from the figure's toolbar or \texttt{plt.savefig} function)
+    \end{enumerate}
+
+    \item \textbf{Activation functions}
+    \label{ex:activation}
+        Plot the following functions in one plot. Add the axes labels and a legend to the plot. Give an interpretation for the parameters of the functions.
+    
+        \begin{enumerate}
+            \item Sigmoid function:
+                $$f(x)=\frac{1}{1+\exp(-ax)},$$ 
+                where $a$ is a free parameter.
+            \item Hyperbolic tangent function:
+                $$g(x)=\tanh(x).$$
+            \item Threshold function:
+                \begin{equation*}
+                    h(x)=\begin{cases}1 & \text{if $x\geq0$} \\
+                                    0 & \text{if $x<0$.}
+                        \end{cases}
+                \end{equation*}
+            \item Piecewise linear:
+                \begin{equation*}
+                    i(x)=\begin{cases} \frac{1}{2}& \text{if $x\geq\frac{1}{2}$} \\
+                        x & \text{if $\frac{1}{2}>x>-\frac{1}{2}$} \\
+                        -\frac{1}{2} & \text{if $x\leq-\frac{1}{2}$.}
+                        \end{cases}
+                \end{equation*}
+    
+        \end{enumerate}
+    
+        Export the figure to a file.
+
+    \item \textbf {Report}
+
+    Generate a single PDF file including your name(s), student identification number(s), figures from Exercises \ref{ex:pylab} and \ref{ex:activation}, captions, a short comment to your solutions and a full source code. To do that you can use  \texttt{pyreport} (see the course homepage), LaTeX or any other word processing program with PDF export. State precisely with each answer, which exercise it is related to (you can also copy the text of the exercise at the top of your solution). Please attach the source code in raw text format as well (as \texttt{*.py} file).
+    
+    \textbf{Send the report to your tutor not later than Monday, Nov 8nd, 9am!} 
+\end{enumerate}
 
 \vfill
 \centerline{\CAP Contact}
 \CAP
 
-Urs Bergmann \hfill ubergmann@fias.uni-frankfurt.de \\ 
-Matthias Guggenmos\hfill Email: matthias.guggenmos@bccn-berlin.de\\
-\underline{Richard Kempter} \hfill Phone: 2093-8925 \hfill
-Email: r.kempter(at)biologie.hu-berlin.de \\
-Robert Schmidt \hfill Phone: 2093-8926 \hfill
-Email: r.schmidt(at)biologie.hu-berlin.de \\
-Bartosz Telenczuk\hfill Phone: 2093-8838 \hfill
-Email: b.telenczuk(at)biologie.hu-berlin.de \\
+\begin{tabular}{lll}
+Urs Bergmann & Phone: 2093-8924 & Email: ubergmann(at)fias.uni-frankfurt.de \\
+Matthias Guggenmos & & Email: matthias.guggenmos(at)bccn-berlin.de \\
+\underline{Richard Kempter} \hfill & Phone: 2093-8925 \hfill & Email: r.kempter(at)biologie.hu-berlin.de \\
+Robert Schmidt & Phone: 2093-8926 & Email: r.schmidt(at)biologie.hu-berlin.de \\
+Bartosz Telenczuk & Phone: 2093-8838 & Email: b.telenczuk(at)biologie.hu-berlin.de \\
+\end{tabular}
+
 \end{document}
  
