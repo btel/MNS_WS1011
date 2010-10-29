@@ -40,7 +40,7 @@
 \begin{center}
 \large HUMBOLDT-UNIVERSIT"AT \hskip 0.1 cm ZU \hskip 0.1 cm BERLIN
 \vskip 0.1 true cm
-\mgross BERNSTEIN CENTRE FOR COMPUTATIONAL NEUROSCIENCE
+\mgross BERNSTEIN CENTER FOR COMPUTATIONAL NEUROSCIENCE
 \end{center}
 }
 \parbox{2cm}
@@ -75,9 +75,7 @@
     Python functions are usually organized into modules, which eases a lot the managing of projects. Here you will learn how to write and use simple modules.
     \begin{enumerate}
         \item Write your Fibonacci function into a file \texttt{mymodule.py} (you can also choose another name).
-        \item Import \texttt{mymodule} module into the
-            \texttt{ipython} shell and run your \texttt{fib} function
-            from previous sheet:
+        \item Import \texttt{mymodule} module into the \texttt{ipython} shell and run your \texttt{fib} function from the previous sheet:
         \begin{verbatim}
             import mymodule
             mymodule.fib(10)
@@ -90,11 +88,8 @@
             reload(my)
         \end{verbatim}
         Investigate the differences between these cases.
-    \item When you work in the interactive \texttt{ipython} shell also
-        the magic function \texttt{\%run} may prove useful.
-            Find out form documentation what the function does and try
-            it out.
-        \item (Optional) It is also possible to write a \texttt{main} function which will be called when the module is run as a script (for example like that: \texttt{python mymodule.py}). The simplest function looks like that:
+        \item When you work in the interactive \texttt{ipython} shell, also the magic function \texttt{\%run} may prove useful. Find out from the documentation what the function does and use it to import your Fibonacci function.
+        \item (Optional) It is also possible to write a \texttt{main} function, which will be called when the module is run as a script (for example like that: \texttt{python mymodule.py}). The simplest function looks like that:
         \begin{verbatim}
             ...
             def main():
@@ -106,15 +101,11 @@
     \end{enumerate}
 
     \item \textbf{Numerical Python} (NumPy) \\
-    Standard version of Python does not provide any functions for
-    efficient numerical computation. However the \texttt{scipy} module
-    extends its functionality into this area. It includes optimized
-    algorithms for creation and manipulation of numerical arrays, basic
-    linear algebra operations and others.
+    The standard version of Python does not provide any functions for efficient numerical computation. However, the \texttt{scipy} module extends its functionality into this area. \texttt{Scipy} includes optimized algorithms for the creation and manipulation of numerical arrays, basic linear algebra operations, and others.
     
     \begin{enumerate}
         \item Import \texttt{numpy} (for example, \texttt{import numpy as np})
-        \item Create the following arrays: integers from 0 to 99 (\texttt{np.arange}), the sequence $\lbrace5.1, 5.2, 5.3, ...,15.0\rbrace$ (\texttt{np.arange}), 5x10 matrix of zeros or ones (\texttt{np.zeros}/\texttt{np.ones}), 5x5 identity matrix (\texttt{np.eye})
+        \item Create the following arrays: integers from 0 to 99 (\texttt{np.arange}), the sequence $\lbrace5.1, 5.2, 5.3, ...,15.0\rbrace$ (\texttt{np.arange}), the 5x10 matrix of zeros or ones (\texttt{np.zeros}/\texttt{np.ones}), and the 5x5 identity matrix (\texttt{np.eye})
         \item Define two 2D arrays:
         $$
         A=\left(
@@ -132,9 +123,13 @@
         \end{array}
         \right)
         $$
-        
-        Multiply the array $A$ by a scalar, mulitply arrays $A$ and $B$ element-wise, calculate a matrix dot product $A$ and $B$ (\texttt{np.dot}).
-        \item Multiply element-wise column 1 of matrix A with row 2 of matrix B using slice notation.
+        and
+        \begin{enumerate}
+            \item multiply the array $A$ by a scalar
+            \item multiply arrays $A$ and $B$ element-wise
+            \item check if matrices $A$ and $B$ commute under the matrix dot product (use \texttt{np.dot} and $AB\stackrel{!}{=}BA$)
+            \item Multiply element-wise column 1 of matrix A with row 2 of matrix B using the slice notation.
+        \end{enumerate}
     \end{enumerate}
 
     \item \textbf{Basic plotting} (Pylab)
@@ -152,19 +147,19 @@
 
     \begin{enumerate}
         \item Modify the above code, so that only points are drawn (without connecting lines).
-        \item Label x-axis, y-axis and add the title to the figure (\texttt{plt.xlabel}, \texttt{plt.ylabel}, \texttt{plt.title}).
-        \item Split the figure vertically into two panels (use \texttt{plt.subplot} command). In the upper panel plot the data with lines and in the lower panel with bars (\texttt{plt.bar}).
-        \item Save the figure in your home directory (you can use an icon from the figure's toolbar or \texttt{plt.savefig} function)
+        \item Label the x-axis, the y-axis and add a title to the figure (\texttt{plt.xlabel}, \texttt{plt.ylabel}, \texttt{plt.title}).
+        \item Split the figure vertically into two panels (\texttt{plt.subplot}). In the upper panel, plot the data with lines. In the lower panel, plot it with bars (\texttt{plt.bar}).
+        \item Save the figure in your home directory (you can use an icon from the figure's toolbar or the \texttt{plt.savefig} function)
     \end{enumerate}
 
     \item \textbf{Activation functions}
     \label{ex:activation}
 
-        Plot the following functions in one plot. Add the axes labels and a legend to the plot. Give an interpretation for the parameters of the functions.
+        Plot the following functions in one plot. Add the axes' labels and a legend to the plot. Give an interpretation for the parameters of the functions.
     
         \begin{enumerate}
             \item Sigmoid function:
-                $$f(x)=\frac{1}{1+\exp(-ax)},$$ 
+                $$f(x)=\frac{1}{1+\exp(-ax)}$$
                 where $a$ is a free parameter.
             \item Hyperbolic tangent function:
                 $$g(x)=\tanh(x).$$
@@ -174,7 +169,7 @@
                                     0 & \text{if $x<0$.}
                         \end{cases}
                 \end{equation*}
-            \item Piecewise linear:
+            \item Piecewise linear function:
                 \begin{equation*}
                     i(x)=\begin{cases} \frac{1}{2}& \text{if $x\geq\frac{1}{2}$} \\
                         x & \text{if $\frac{1}{2}>x>-\frac{1}{2}$} \\
@@ -200,7 +195,7 @@
 \begin{tabular}{lll}
 Urs Bergmann & Phone: 2093-8924 & Email: ubergmann(at)fias.uni-frankfurt.de \\
 Matthias Guggenmos & & Email: matthias.guggenmos(at)bccn-berlin.de \\
-\underline{Richard Kempter} \hfill & Phone: 2093-8925 \hfill & Email: r.kempter(at)biologie.hu-berlin.de \\
+Richard Kempter \hfill & Phone: 2093-8925 \hfill & Email: r.kempter(at)biologie.hu-berlin.de \\
 Robert Schmidt & Phone: 2093-8926 & Email: r.schmidt(at)biologie.hu-berlin.de \\
 Bartosz Telenczuk & Phone: 2093-8838 & Email: b.telenczuk(at)biologie.hu-berlin.de \\
 \end{tabular}
