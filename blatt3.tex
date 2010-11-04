@@ -124,7 +124,7 @@ Finally, we will explore its severe limitations.
                 using an error-correction update rule:
                 \begin{equation}
                     \textbf{w}(k+1)=\mathbf{w}(k)+\eta
-                    [d(k)-y(\mathbf{x}(k))]\mathbf{x}(k),
+                    [d(\mathbf{x}(k))-y(\mathbf{x}(k))]\mathbf{x}(k),
                     \label{eq:errorupdate}
                 \end{equation}
                 where $\eta>0$ is the learning rate.
@@ -136,10 +136,12 @@ Finally, we will explore its severe limitations.
                 input vector according to its response class. Superimpose the
                 weight vector on the same plot (without bias term $w_0$).
                 Explain why the weight vector is optimal.
-            \item \label{it:gen_error} The expected probability of disagreement of a
-                McCulloch-Pitts neuron and a goal function, which is
-                implementable by this type of neuron, turns out to be
-                proportional to the angle between the corresponding weights:
+            \item \label{it:gen_error} The expected probability of disagreement
+                of a McCulloch-Pitts neuron with weight $\mathbf{w}(k)$ and a
+                goal function, which is assumed to be implementable by this
+                type of neuron with a weight vector $\mathbf{\tilde w}$, turns
+                out to be proportional to the angle between the corresponding
+                weights:
                 \begin{equation}
                     \varepsilon_g(k) = \frac{1}{4} \left<
                     \left( y\left(\mathbf{x}\left(k\right)\right) -
@@ -149,19 +151,18 @@ Finally, we will explore its severe limitations.
                     w}|} \right),
                     \label{eq:generalizationerr}
                 \end{equation}
-                where $\mathbf{\tilde w}$ is the optimal weight vector
-                from~\ref{it:optimalweight}. Study and plot the convergence
-                behavior in time of the generalization error for the update
-                rule in Equation~\ref{eq:errorupdate}.
+                Study and plot the convergence behavior in time of the
+                generalization error for the update rule
+                in equation~\ref{eq:errorupdate}. You can take $\mathbf{\tilde
+                w}$ to be the optimal weight vector
+                from~\ref{it:optimalweight}.
         \end{enumerate}
     \item \textbf{Linear separability}
         \begin{enumerate}
             \item Train a perceptron to perform the XOR function on binary
                 inputs.
             \item \label{it:xor_err} Show that the learning algorithm does not converge
-                i.e. the weights do not set to fixed values. What is the
-                consequence for the generalization error of
-                Equation~\ref{eq:generalizationerr}?
+                i.e. the weights do not settle on fixed values.
             \item \label{it:xor_plot} Plot the XOR classification problem on an
                 Euclidean plane. Explain why the problem is not
                 linearly separable. 
@@ -171,11 +172,10 @@ Finally, we will explore its severe limitations.
 
 {\bf Report}
 
-Report should include: solutions to all exercises (source code), the plot
-from Exercise~\ref{it:optimalweight} with a caption and discussion of
-the optimal vector, the plot and comment from Exercise~\ref{it:gen_error},
-an answer to question in Exercise~\ref{it:xor_err} and the plot from
-Exercise~\ref{it:xor_plot} with a comment.
+The report should include: solutions to all exercises (source code), the plot
+from exercise~\ref{it:optimalweight} with a caption and discussion of
+the optimal vector, the plot and comment from exercise~\ref{it:gen_error},
+and the plot from exercise~\ref{it:xor_plot} with a comment.
 
 \vfill
 \centerline{\CAP Contact}
