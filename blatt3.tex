@@ -108,16 +108,16 @@ Finally, we will explore its severe limitations.
     \item \textbf{Rosenblatt's perceptron}
         \begin{enumerate}
             \item Prepare a training set $\left\{\mathbf{x}(i),
-                d(i)\right\}$ for $i=1,2,\dots,n$, where
+                d(\mathbf{x})\right\}$ for $i=1,2,\dots,n$, where
                 $\mathbf{x}(i)=[1, x_1(i), x_2(i)]$ is the input
-                vector and $d(i)$ is the desired response. Let the
+                vector and $d(\mathbf{x})$ is the desired response. Let the
                 desired response be a comparison between two inputs:
 
                 \begin{equation*}
-                    d(i)=
+                    d(\mathbf{x})=
                     \begin{cases}
-                        1, & \text{if } x_1(i)\geq x_2(i), \\
-                        -1, & \text{if } x_1(i)<x_2(i).
+                        1, & \text{if } x_1\geq x_2, \\
+                        -1, & \text{if } x_1<x_2.
                     \end{cases}
                 \end{equation*}
             \item Train a McCulloch-Pitts neuron on the training set
@@ -125,24 +125,43 @@ Finally, we will explore its severe limitations.
                 \begin{equation}
                     \textbf{w}(k+1)=\mathbf{w}(k)+\eta
                     [d(k)-y(\mathbf{x}(k))]\mathbf{x}(k),
+                    \label{eq:errorupdate}
                 \end{equation}
                 where $\eta>0$ is the learning rate.
                 Present the training set repeatedly until no weight
                 changes.
             \item Test on a new dataset (validation set) that the
                 neuron can indeed perform the trained comparison function.
-            \item Plot the training set and label each input vector according
-                to its response class. Superimpose the weight vector on the
-                same plot (without bias term $w_0$). Explain why the
-                weight vector is optimal.
-
+            \item\label{it:optimalweight} Plot the training set and label each
+                input vector according to its response class. Superimpose the
+                weight vector on the same plot (without bias term $w_0$).
+                Explain why the weight vector is optimal.
+            \item The expected probability of disagreement of a
+                McCulloch-Pitts neuron and a goal function, which is
+                implementable by this type of neuron, turns out to be
+                proportional to the angle between the corresponding weights:
+                \begin{equation}
+                    \varepsilon_g(k) = \frac{1}{4} \left<
+                    \left( y\left(\mathbf{x}\left(k\right)\right) -
+                    d\left(\mathbf{x}\right) \right)^2 \right>_\mathbf{x} =
+                    \frac{1}{\pi} \mathrm{arccos} \left( \frac{\mathbf{w}(k)
+                    \cdot \mathbf{\tilde w}}{|\mathbf{w}(k)| |\mathbf{\tilde
+                    w}|} \right),
+                    \label{eq:generalizationerr}
+                \end{equation}
+                where $\mathbf{\tilde w}$ is the optimal weight vector
+                from~\ref{it:optimalweight}. Study and plot the convergence
+                behavior in time of the generalization error for the update
+                rule in equation~\ref{eq:errorupdate}.
         \end{enumerate}
     \item \textbf{Linear separability}
         \begin{enumerate}
             \item Train a perceptron to perform the XOR function on binary
                 inputs.
             \item Show that the learning algorithm does not converge
-                i.e. the weights do not set to fixed values.
+                i.e. the weights do not set to fixed values. What is the
+                consequence for the generalization error of
+                equation~\ref{eq:generalizationerr}?
             \item Plot the XOR classification problem on an
                 Euclidean plane. Explain why the problem is not
                 linearly separable. 
