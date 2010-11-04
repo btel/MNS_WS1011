@@ -136,7 +136,7 @@ Finally, we will explore its severe limitations.
                 input vector according to its response class. Superimpose the
                 weight vector on the same plot (without bias term $w_0$).
                 Explain why the weight vector is optimal.
-            \item The expected probability of disagreement of a
+            \item \label{it:gen_error} The expected probability of disagreement of a
                 McCulloch-Pitts neuron and a goal function, which is
                 implementable by this type of neuron, turns out to be
                 proportional to the angle between the corresponding weights:
@@ -152,22 +152,30 @@ Finally, we will explore its severe limitations.
                 where $\mathbf{\tilde w}$ is the optimal weight vector
                 from~\ref{it:optimalweight}. Study and plot the convergence
                 behavior in time of the generalization error for the update
-                rule in equation~\ref{eq:errorupdate}.
+                rule in Equation~\ref{eq:errorupdate}.
         \end{enumerate}
     \item \textbf{Linear separability}
         \begin{enumerate}
             \item Train a perceptron to perform the XOR function on binary
                 inputs.
-            \item Show that the learning algorithm does not converge
+            \item \label{it:xor_err} Show that the learning algorithm does not converge
                 i.e. the weights do not set to fixed values. What is the
                 consequence for the generalization error of
-                equation~\ref{eq:generalizationerr}?
-            \item Plot the XOR classification problem on an
+                Equation~\ref{eq:generalizationerr}?
+            \item \label{it:xor_plot} Plot the XOR classification problem on an
                 Euclidean plane. Explain why the problem is not
                 linearly separable. 
         \end{enumerate}
 
 \end{enumerate}
+
+{\bf Report}
+
+Report should include: solutions to all exercises (source code), the plot
+from Exercise~\ref{it:optimalweight} with a caption and discussion of
+the optimal vector, the plot and comment from Exercise~\ref{it:gen_error},
+an answer to question in Exercise~\ref{it:xor_err} and the plot from
+Exercise~\ref{it:xor_plot} with a comment.
 
 \vfill
 \centerline{\CAP Contact}
