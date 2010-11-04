@@ -136,26 +136,6 @@ Finally, we will explore its severe limitations.
                 input vector according to its response class. Superimpose the
                 weight vector on the same plot (without bias term $w_0$).
                 Explain why the weight vector is optimal.
-            \item \label{it:gen_error} The expected probability of disagreement
-                of a McCulloch-Pitts neuron with weight $\mathbf{w}(k)$ and a
-                goal function, which is assumed to be implementable by this
-                type of neuron with a weight vector $\mathbf{\tilde w}$, turns
-                out to be proportional to the angle between the corresponding
-                weights:
-                \begin{equation}
-                    \varepsilon_g(k) = \frac{1}{4} \left<
-                    \left( y\left(\mathbf{x}\left(k\right)\right) -
-                    d\left(\mathbf{x}\right) \right)^2 \right>_\mathbf{x} =
-                    \frac{1}{\pi} \mathrm{arccos} \left( \frac{\mathbf{w}(k)
-                    \cdot \mathbf{\tilde w}}{|\mathbf{w}(k)| |\mathbf{\tilde
-                    w}|} \right),
-                    \label{eq:generalizationerr}
-                \end{equation}
-                Study and plot the convergence behavior in time of the
-                generalization error for the update rule
-                in equation~\ref{eq:errorupdate}. You can take $\mathbf{\tilde
-                w}$ to be the optimal weight vector
-                from~\ref{it:optimalweight}.
         \end{enumerate}
     \item \textbf{Linear separability}
         \begin{enumerate}
@@ -174,8 +154,8 @@ Finally, we will explore its severe limitations.
 
 The report should include: solutions to all exercises (source code), the plot
 from exercise~\ref{it:optimalweight} with a caption and discussion of
-the optimal vector, the plot and comment from exercise~\ref{it:gen_error},
-and the plot from exercise~\ref{it:xor_plot} with a comment.
+the optimal vector, and the plot from exercise~\ref{it:xor_plot} with a
+comment.
 
 \vfill
 \centerline{\CAP Contact}
