@@ -1,0 +1,182 @@
+\documentclass[12pt, a4]{article}
+
+\usepackage{amsmath}
+\usepackage{german}
+\usepackage{graphicx}
+\DeclareMathOperator\sgn{sgn}
+
+%\graphicspath{{/home/ritz/Teaching/fcn/fig/}}
+
+%----------------- layout ----------------------------------------
+
+\oddsidemargin=0in
+\textwidth=6in
+\topmargin=-0.7in
+\textheight=9.5in
+\baselineskip=16pt
+\font\mittel=cmr17
+\font\roman=cmr12
+\font\klein=cmr9
+\font\mgross=cmr10
+\newfont{\CAP}{cmcsc10 scaled 900}
+\pagestyle{empty}
+\parindent=0mm
+
+%----------------- macros ----------------------------------------
+\newcommand{\conc}[1]{[{\rm C}]_{\text{#1}}}
+\newcommand{\units}[1]{\text{#1}}
+\newcommand{\kalium}{$\text{K}^+$}
+\newcommand{\natrium}{$\text{Na}^+$}
+\newcommand{\chlor}{$\text{Cl}^-$}
+\newcommand{\wasser}{$\text{H}_2\text{O}$}
+%-----------------------------------------------------------------
+
+
+\begin{document}
+
+\parbox{2cm}{
+\includegraphics[width=1.8cm]{bccnlogo.pdf}
+}
+\parbox{11cm}{
+\begin{center}
+\large HUMBOLDT-UNIVERSIT"AT \hskip 0.1 cm ZU \hskip 0.1 cm BERLIN
+\vskip 0.1 true cm
+\mgross BERNSTEIN CENTER FOR COMPUTATIONAL NEUROSCIENCE
+\end{center}
+}
+\parbox{2cm}
+{
+\hfill
+\includegraphics[width=1.8cm]{hublogo.pdf}
+}
+
+\vskip 0.6 true cm
+
+\leftline{\CAP Humboldt-Universit"at zu Berlin 
+\hfill Phone: 030/2093-9110}
+\leftline{\CAP Philippstr. 13 House 6
+              \hfill Fax: 030/2093-6771}
+\leftline{\CAP \hfill webpage: http://www.bccn-berlin.de/}
+
+
+\vskip 0.8 true cm
+\centerline{\bf Models of Neural Systems, WS 2010/11}
+\centerline{\bf Computer Practical 4}
+\centerline{Solutions to hand in on: November, 22th, 2009}
+
+\vskip 0.8 true cm
+{\bf Visual receptive fields}
+
+\medskip
+
+\vskip 0.8 true cm
+{\bf Exercises}
+\begin{enumerate}
+
+    \item  A commonly used stimulus for the recordings from the visual
+        system is a sinusoidal grating:
+        \begin{equation}
+            s(x, y) = A \cos(Kx\cos\Theta + Ky\sin\Theta
+            -\Phi),
+            \label{eq:grating}
+        \end{equation}
+        where $x$, $y$ are the spatial coordinates, $K$ is the spatial
+        frequency, $\Theta$ is the orientation,  $\Phi$ is the spatial
+        phase and $A$ is the contrast amplitude.
+
+        \begin{enumerate}
+            \item Approximate the visual field $(x,y)$ with a
+                2-dimensional grid of uniformly-sampled points:
+                $(x_i, y_i)= (-x_0+i\Delta x, -y_0+j\Delta y)$ for
+                $i=0,1,\dots, \frac{2x_0}{\Delta x}$ and $j=0,1,\dots,
+                \frac{2y_0}{\Delta y}$ where $\Delta x$, $\Delta y$
+                are bin sizes and $x_0$ and $y_0$ are the
+                stimulus extents (in degrees of visual field). Take
+                $x_0=5^\circ$, $y_0=5^\circ$.
+                
+                \textit{Hint:} You can use
+                \texttt{pylab.meshgrid} to generate such a grid. 
+            \item \label{ex:grating} Plot the grating on the
+                grid for the following parameters: $\Theta=0$,
+                $\Phi=0$, $K=\pi\,\frac{1}{\mathrm{degree}}$, $A=1$.  Use the 
+                \texttt{pylab.imshow} function to show a 2-dimensional map. 
+            \item \label{ex:varygrating}Vary the orientation $\Theta$ and the
+                spatial frequency $K$ and plot the resulting maps.
+        \end{enumerate}
+
+    \item \textbf{A model of receptive fields}. A mathematical approximation of the
+        receptive field of a simple cell is provided by a Gabor
+        function:
+
+        \begin{equation}
+           D_s(x,y)=\frac{1}{2\pi\sigma_x\sigma_y}
+            \exp\left(-\frac{x^2}{2\sigma_x^2}-\frac
+            {y^2}{ 2\sigma_y^2}\right)\cos(kx-\phi),
+            \label{eq:Gabor}
+        \end{equation}
+        where  $k$ is the preferred spatial frequency, $\phi$ is
+        the preferred spatial phase,  $\sigma_x$,
+        $\sigma_y$ are the receptive field sizes.
+
+        \begin{enumerate}
+            \item\label{ex:Gabor} Implement a Gabor function as a model of the
+                receptive field of a V1 simple cell with a preferred
+                spatial frequency $k=\pi\,\frac{1}{\mathrm{degree}}$,
+                preferred spatial phase $\phi=0$
+                and receptive field size $\sigma_x=2^\circ$,
+                $\sigma_y=1^\circ$. Plot this Gabor receptive field.
+            \item Calculate the response of a cell with such a
+                receptive field to the grating from exercise
+                \ref{ex:grating} using a simple linear model:
+
+                \begin{equation}
+                    L_s = \sum_{i=0}^{\frac{2x_0}{\Delta x}}
+                    \sum_{j=0}^{\frac{2y_0}{\Delta y}} D_s(x_i,y_i) s(x_i,y_i)
+                    \Delta x \Delta y.
+                    \label{eq:respons}
+                \end{equation}
+        \end{enumerate}
+
+    \item \textbf{Tuning Curve}. A tuning curve describes the dependence of
+        the neuronal response on a parameter of the stimulus such as
+        spatial frequency, orientation or phase. Plot the neuronal
+        response $L_s$ to the grating from the exercise \ref{ex:grating} as a 
+        function of:
+
+        \begin{enumerate}
+            \item\label{ex:tuneorient} stimulus orientation $\Theta$,
+            \item ratio of the stimulus' spatial frequency to the
+                cell's preferred value $K/k$,
+            \item\label{ex:tunephase} stimulus' spatial phase  $\Phi$.
+        \end{enumerate}
+
+\end{enumerate}
+
+\vspace{1cm}
+
+{\bf Report}
+
+The report should include the plots from
+exercises~\ref{ex:grating},\ref{ex:varygrating},\ref{ex:Gabor}
+and~\ref{ex:tuneorient} to~\ref{ex:tunephase} with caption and discussion.
+Further, send the solutions to all exercises (source code) by email as well.
+
+
+\vfill
+\centerline{\CAP Contact}
+\CAP
+
+\begin{tabular}{lll}
+Urs Bergmann & Phone: 2093-8924 & Email:
+urs.bergmann(at)biologie.hu-berlin.de \\
+Matthias Guggenmos & & Email: matthias.guggenmos(at)bccn-berlin.de \\
+Richard Kempter \hfill & Phone: 2093-8925 \hfill & Email:
+r.kempter(at)biologie.hu-berlin.de \\
+Robert Schmidt & Phone: 2093-8926 & Email: r.schmidt(at)biologie.hu-berlin.de
+\\
+Bartosz Telenczuk & Phone: 2093-8838 & Email:
+b.telenczuk(at)biologie.hu-berlin.de \\
+\end{tabular}
+
+\end{document}
+ 
