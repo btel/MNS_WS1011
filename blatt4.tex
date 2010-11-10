@@ -104,8 +104,10 @@
                 spatial frequency $K$ and plot the resulting maps.
         \end{enumerate}
 
-    \item \textbf{A model of receptive fields}. A mathematical approximation of the
-        receptive field of a simple cell is provided by a Gabor
+    \item \textbf{A model of receptive fields}.  Receptive field (RF) describes
+                ``sensitivity'' of a neuron to input arriving from
+                different points of the visual field. A convenient mathematical
+                approximation of a simple cell receptive field is provided by a Gabor
         function:
 
         \begin{equation}
@@ -119,15 +121,23 @@
         $\sigma_y$ are the receptive field sizes.
 
         \begin{enumerate}
-            \item\label{ex:Gabor} Implement a Gabor function as a model of the
-                receptive field of a V1 simple cell with a preferred
+            \item \label{ex:Gabor}  Implement a Gabor function as a model of the
+                receptive field of  a preferred
                 spatial frequency $k=\pi\,\frac{1}{\mathrm{degree}}$,
                 preferred spatial phase $\phi=0$
                 and receptive field size $\sigma_x=2^\circ$,
                 $\sigma_y=1^\circ$. Plot this Gabor receptive field.
-            \item Calculate the response of a cell with such a
-                receptive field to the grating from exercise
-                \ref{ex:grating} using a simple linear model:
+                
+            \item What are the optimal stimuli for a neuron with such a
+                RF? Where would you expect to find a
+                neuron with such a RF?  Why this characterizes a
+                simple cell?
+            \item In order to calculate the response of a neuron to a
+                visual stimulus, we need to sum the inputs from all
+                receptors in the visual field weighted by the
+                receptive field. Mathematically this can be
+                represented as a linear model:
+                
 
                 \begin{equation}
                     L_s = \sum_{i=0}^{\frac{2x_0}{\Delta x}}
@@ -135,6 +145,10 @@
                     \Delta x \Delta y.
                     \label{eq:respons}
                 \end{equation}
+                
+                Calculate the response of a cell with such a
+                receptive field to the grating from exercise
+                \ref{ex:grating}.
         \end{enumerate}
 
     \item \textbf{Tuning Curve}. A tuning curve describes the dependence of
@@ -148,7 +162,11 @@
             \item ratio of the stimulus' spatial frequency to the
                 cell's preferred value $K/k$,
             \item\label{ex:tunephase} stimulus' spatial phase  $\Phi$.
+
         \end{enumerate}
+        Characterize the receptive field in terms of the selectivity
+        (spatial, orientation and spatial frequency) and preferred stimulus
+        (the stimulus giving rise to maximal response). 
 
 \end{enumerate}
 
@@ -161,6 +179,12 @@ exercises~\ref{ex:grating},\ref{ex:varygrating},\ref{ex:Gabor}
 and~\ref{ex:tuneorient} to~\ref{ex:tunephase} with caption and discussion.
 Further, send the solutions to all exercises (source code) by email as well.
 
+\vspace{1cm}:
+{\bf Reference}
+
+D. H. Hubel and T. N. Wiesel, Receptive fields, binocular interaction
+and functional architecture in the cat's visual cortex, J Physiol.
+160(1): 106–154.2, 1962
 
 \vfill
 \centerline{\CAP Contact}
