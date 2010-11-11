@@ -65,12 +65,7 @@
 \centerline{Solutions to hand in on: November, 22nd, 2010}
 
 \vskip 0.8 true cm
-{\bf Visual receptive fields}
-
-\medskip
-
-\vskip 0.8 true cm
-{\bf Exercises}
+{\bf Visual receptive fields -- exercises:}
 \begin{enumerate}
 
     \item \textbf{Visual stimulus.} A commonly used stimulus for the recordings from the visual
@@ -92,7 +87,7 @@
                 $i=0,1,\dots, \frac{2x_0}{\Delta x}$ and $j=0,1,\dots,
                 \frac{2y_0}{\Delta y}$ where $\Delta x$, $\Delta y$
                 are bin sizes and $x_0$ and $y_0$ are the
-                stimulus extents (both in degrees of the visual field). Take
+                visual field extents (both in degrees). Take
                 $x_0=5^\circ$, $y_0=5^\circ$.
                 
                 \textit{Hint:} You can use
@@ -148,11 +143,14 @@
                     \label{eq:respons}
                 \end{equation}
                 
-                Numerically calculate the response of a cell with a Gabor
-                receptive field (Equation \ref{eq:Gabor}, parameters
-                as in exercise \ref{ex:Gabor}) to the grating from exercise
-                \ref{ex:grating}, and state the resulting number in
-                your report.
+                Numerically calculate the response of a cell with a
+                Gabor receptive field (Equation \ref{eq:Gabor},
+                parameters as in exercise \ref{ex:Gabor}) to the
+                grating from exercise \ref{ex:grating}, and state the
+                resulting number in your report. Compare it with a
+                response to an uniformly illuminated visual field
+                ($s(x,y)=A$). How would you explain the difference?
+
         \end{enumerate}
 
     \item\label{ex:tune_curve} \textbf{Tuning Curve}. A tuning curve describes the dependence of
@@ -171,21 +169,17 @@
         Characterize the receptive field in terms of its selectivity
         (spatial, orientation and spatial frequency) and preferred stimulus
         (the stimulus giving rise to maximal response). 
+    \item {\bf Report.} Submit plain source code files for all exercises and a
+    report. The report should be in PDF format and include source
+    code to all exercises, answers to the
+    questions in exercises \ref{ex:RF_questions}, \ref{ex:linear_response}
+    and \ref{ex:tune_curve}, and plots from exercises~\ref{ex:grating},
+    \ref{ex:varygrating}, \ref{ex:Gabor} and~\ref{ex:tune_curve} with
+    caption and labels. 
 
 \end{enumerate}
 
-{\bf Report}
-
-You need to submit plain source code files for all exercises and a
-report. The report should be in PDF format and include answers to the
-questions in exercises \ref{ex:RF_questions}, \ref{ex:linear_response}
-and \ref{ex:tune_curve} and plots from exercises~\ref{ex:grating},
-\ref{ex:varygrating}, \ref{ex:Gabor} and~\ref{ex:tune_curve} with
-caption and discussion.  Don't forget to include also the source code
-to all exercises in the report PDF.
-
-\vspace{1cm}
-{\bf Reference}
+{\bf Reference:}
 
 D. H. Hubel and T. N. Wiesel (1959). Receptive fields of single
 neurones in the cat's striate cortex, J Physiol. 148(3): 574-591. 
