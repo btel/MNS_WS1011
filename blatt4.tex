@@ -86,7 +86,8 @@
 
         \begin{enumerate}
             \item Approximate the visual field $(x,y)$ with a
-                2-dimensional grid of uniformly-sampled points:
+                2-dimensional grid of uniformly-distributed
+                photoreceptors (retina):
                 $(x_i, y_i)= (-x_0+i\Delta x, -y_0+j\Delta y)$ for
                 $i=0,1,\dots, \frac{2x_0}{\Delta x}$ and $j=0,1,\dots,
                 \frac{2y_0}{\Delta y}$ where $\Delta x$, $\Delta y$
@@ -105,7 +106,7 @@
         \end{enumerate}
 
     \item \textbf{A model of receptive fields}.  A receptive field (RF)
-                describes the``sensitivity'' of a neuron to input arriving from
+                describes the ``sensitivity'' of a neuron to input arriving from
                 different points of the visual field. A convenient mathematical
                 approximation of a simple cell receptive field is provided by a
                 Gabor function:
@@ -128,16 +129,17 @@
                 and receptive field size $\sigma_x=2^\circ$,
                 $\sigma_y=1^\circ$. Plot this Gabor receptive field.
                 
-                \item \label{ex:RF_questions} What are the optimal
+            \item \label{ex:RF_questions} What are the optimal
                 stimuli for a neuron with such a RF? Where would you
                 expect to find a neuron with such a RF?  Why does this
                 RF characterize a simple cell but not a complex cell?
-                \item In order to calculate the response of a neuron
-                to a visual stimulus, we need to sum all inputs in the
+                
+            \item In order to calculate the response of a neuron
+                to a visual stimulus, we need to sum the input
+                intensity to all photoreceptors in the
                 visual field weighted by the receptive field.
                 Mathematically this can be represented as a linear
                 filter:
-                
 
                 \begin{equation}
                     L_s = \sum_{i=0}^{\frac{2x_0}{\Delta x}}
@@ -172,7 +174,7 @@
 
 {\bf Report}
 
-You need to submit plain sourcecode files for all exercises and a
+You need to submit plain source code files for all exercises and a
 report. The report should be in PDF format and include answers to the
 questions in exercises \ref{ex:RF_questions} and \ref{ex:tune_curve} and
 plots from exercises~\ref{ex:grating}, \ref{ex:varygrating},
@@ -183,9 +185,8 @@ report PDF.
 \vspace{1cm}
 {\bf Reference}
 
-D. H. Hubel and T. N. Wiesel (1962). Receptive fields, binocular interaction
-and functional architecture in the cat's visual cortex, J Physiol.
-160(1): 106-154.
+D. H. Hubel and T. N. Wiesel (1959). Receptive fields of single
+neurones in the cat's striate cortex, J Physiol. 148(3): 574-591. 
 
 \vfill
 \centerline{\CAP Contact}
