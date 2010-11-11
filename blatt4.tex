@@ -106,7 +106,7 @@
         \end{enumerate}
 
     \item \textbf{A model of receptive fields}.  A receptive field (RF)
-                describes the ``sensitivity'' of a neuron to input arriving from
+                describes the ``sensitivity'' of a neuron to inputs arriving from
                 different points of the visual field. A convenient mathematical
                 approximation of a simple cell receptive field is provided by a
                 Gabor function:
@@ -134,9 +134,9 @@
                 expect to find a neuron with such a RF?  Why does this
                 RF characterize a simple cell but not a complex cell?
                 
-            \item In order to calculate the response of a neuron
-                to a visual stimulus, we need to sum the input
-                intensity to all photoreceptors in the
+            \item \label{ex:linear_response} In order to calculate the
+                response of a neuron to a visual stimulus, we need to
+                sum the input intensity to all photoreceptors in the
                 visual field weighted by the receptive field.
                 Mathematically this can be represented as a linear
                 filter:
@@ -148,9 +148,11 @@
                     \label{eq:respons}
                 \end{equation}
                 
-                Calculate the response of a cell with a Gabor
-                receptive field (Equation \ref{eq:Gabor}) to the grating from exercise
-                \ref{ex:grating}.
+                Numerically calculate the response of a cell with a Gabor
+                receptive field (Equation \ref{eq:Gabor}, parameters
+                as in exercise \ref{ex:Gabor}) to the grating from exercise
+                \ref{ex:grating}, and state the resulting number in
+                your report.
         \end{enumerate}
 
     \item\label{ex:tune_curve} \textbf{Tuning Curve}. A tuning curve describes the dependence of
@@ -176,11 +178,11 @@
 
 You need to submit plain source code files for all exercises and a
 report. The report should be in PDF format and include answers to the
-questions in exercises \ref{ex:RF_questions} and \ref{ex:tune_curve} and
-plots from exercises~\ref{ex:grating}, \ref{ex:varygrating},
-\ref{ex:Gabor} and~\ref{ex:tune_curve} with caption and discussion.
-Don't forget to also include the source code to all exercises in the
-report PDF.
+questions in exercises \ref{ex:RF_questions}, \ref{ex:linear_response}
+and \ref{ex:tune_curve} and plots from exercises~\ref{ex:grating},
+\ref{ex:varygrating}, \ref{ex:Gabor} and~\ref{ex:tune_curve} with
+caption and discussion.  Don't forget to include also the source code
+to all exercises in the report PDF.
 
 \vspace{1cm}
 {\bf Reference}
