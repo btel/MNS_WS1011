@@ -91,7 +91,7 @@
                 $i=0,1,\dots, \frac{2x_0}{\Delta x}$ and $j=0,1,\dots,
                 \frac{2y_0}{\Delta y}$ where $\Delta x$, $\Delta y$
                 are bin sizes and $x_0$ and $y_0$ are the
-                stimulus extents (in degrees of visual field). Take
+                stimulus extents (both in degrees of the visual field). Take
                 $x_0=5^\circ$, $y_0=5^\circ$.
                 
                 \textit{Hint:} You can use
@@ -104,11 +104,11 @@
                 spatial frequency $K$ and plot the resulting maps.
         \end{enumerate}
 
-    \item \textbf{A model of receptive fields}.  Receptive field (RF) describes
-                ``sensitivity'' of a neuron to input arriving from
+    \item \textbf{A model of receptive fields}.  A receptive field (RF)
+                describes the``sensitivity'' of a neuron to input arriving from
                 different points of the visual field. A convenient mathematical
-                approximation of a simple cell receptive field is provided by a Gabor
-        function:
+                approximation of a simple cell receptive field is provided by a
+                Gabor function:
 
         \begin{equation}
            D_s(x,y)=\frac{1}{2\pi\sigma_x\sigma_y}
@@ -121,17 +121,18 @@
         $\sigma_y$ are the receptive field sizes.
 
         \begin{enumerate}
-            \item \label{ex:Gabor}  Implement a Gabor function as a model of the
-                receptive field of  a preferred
-                spatial frequency $k=\pi\,\frac{1}{\mathrm{degree}}$,
+            \item \label{ex:Gabor}  Implement a Gabor function as a model of
+                a receptive field with preferred spatial frequency
+                $k=\pi\,\frac{1}{\mathrm{degree}}$,
                 preferred spatial phase $\phi=0$
                 and receptive field size $\sigma_x=2^\circ$,
                 $\sigma_y=1^\circ$. Plot this Gabor receptive field.
                 
-            \item \label{ex:RF_questions} What are the optimal stimuli for a neuron with such a
-                RF? Where would you expect to find a
-                neuron with such a RF?  Why this RF characterizes a
-                simple cell but not a complex cell?
+            \item \label{ex:RF_questions} What are the optimal stimuli for
+                a neuron with such a RF? Where would you expect
+                to find a neuron with such a RF?  Why does this RF
+                characterize a simple cell but not a complex
+                cell?
             \item In order to calculate the response of a neuron to a
                 visual stimulus, we need to sum the inputs from all
                 receptors in the visual field weighted by the
@@ -172,7 +173,7 @@
 
 {\bf Report}
 
-The report should include the answers to questions in exercises
+The report should include answers to the questions in exercises
 \ref{ex:RF_questions}, \ref{ex:tune_curve} and plots from
 exercises~\ref{ex:grating},\ref{ex:varygrating},\ref{ex:Gabor}
 and~\ref{ex:tune_curve} with caption and discussion.
