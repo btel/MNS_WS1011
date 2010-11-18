@@ -1,0 +1,216 @@
+\documentclass[12pt, a4]{article}
+
+\usepackage{amsmath}
+\usepackage{german}
+\usepackage{graphicx}
+\DeclareMathOperator\sgn{sgn}
+
+%\graphicspath{{/home/ritz/Teaching/fcn/fig/}}
+
+%----------------- layout ----------------------------------------
+
+\oddsidemargin=0in
+\textwidth=6in
+\topmargin=-0.7in
+\textheight=9.5in
+\baselineskip=16pt
+\font\mittel=cmr17
+\font\roman=cmr12
+\font\klein=cmr9
+\font\mgross=cmr10
+\newfont{\CAP}{cmcsc10 scaled 900}
+\pagestyle{empty}
+\parindent=0mm
+
+%----------------- macros ----------------------------------------
+\newcommand{\conc}[1]{[{\rm C}]_{\text{#1}}}
+\newcommand{\units}[1]{\text{#1}}
+\newcommand{\kalium}{$\text{K}^+$}
+\newcommand{\natrium}{$\text{Na}^+$}
+\newcommand{\chlor}{$\text{Cl}^-$}
+\newcommand{\wasser}{$\text{H}_2\text{O}$}
+%-----------------------------------------------------------------
+
+
+\begin{document}
+
+\parbox{2cm}{
+\includegraphics[width=1.8cm]{bccnlogo.pdf}
+}
+\parbox{11cm}{
+\begin{center}
+\large HUMBOLDT-UNIVERSIT"AT \hskip 0.1 cm ZU \hskip 0.1 cm BERLIN
+\vskip 0.1 true cm
+\mgross BERNSTEIN CENTER FOR COMPUTATIONAL NEUROSCIENCE
+\end{center}
+}
+\parbox{2cm}
+{
+\hfill
+\includegraphics[width=1.8cm]{hublogo.pdf}
+}
+
+\vskip 0.6 true cm
+
+\leftline{\CAP Humboldt-Universit"at zu Berlin 
+\hfill Phone: 030/2093-9110}
+\leftline{\CAP Philippstr. 13 House 6
+              \hfill Fax: 030/2093-6771}
+\leftline{\CAP \hfill webpage: http://www.bccn-berlin.de/}
+
+
+\vskip 0.8 true cm
+\centerline{\bf Models of Neural Systems, WS 2010/11}
+\centerline{\bf Computer Practical 5}
+\centerline{Solutions to hand in on: November, 29th, 2010}
+
+\vskip 0.8 true cm
+{\bf Ordinary Differential Equations (ODEs)}
+
+\medskip
+Differential equations describe the evolution of systems in continous
+time and are widely used in science and engineering. Here, we will
+focus on the first order ordinary differential equations:
+\begin{equation}
+    \dot{x}(t) = f\left(x(t),t\right),
+    \label{eq:ODE}
+\end{equation} 
+
+where $\dot{x}(t)\equiv\frac{dx}{dt}$ is the first derivative of
+$x(t)$ with respect to time $t$. The solution to this equation
+is the function $x(t)$ which satisfies the above relation.
+
+\vskip 0.4 true cm
+{\bf Exercises}
+\begin{enumerate}
+
+\item \textbf{Numerical solutions to ODEs} 
+
+    The simplest numerical method for solving the equation (\ref{eq:ODE})
+    is by discretization. Let's assume that the function $x(t)$ is constant
+    during the short time interval $\Delta t$. We can then rewrite the equation
+    using finite steps:
+
+    \begin{equation}
+        \tilde{x}_{i+1} =\tilde{x}_i + f(\tilde{x}_i, i\Delta t)\Delta t,
+        \quad \text{for } i=0,1,\dots,N.
+        \label{eq:Euler}
+    \end{equation} 
+
+    In order to find the solution, we start with the value $x_0=x(0)$,
+    called the initial condition, and then proceed by adding
+    small increments to the function according to equation
+    (\ref{eq:Euler}). This algorithm is called Euler method.
+
+    \begin{enumerate}
+        \item Define a Python function which calculates and returns a
+        numerical solution to any first-order ODE. The function should
+        take as an argument the function describing the right-hand side
+        of ODE $f(x,t)$, an initial condition $x_0$, an integration step
+        $\Delta t$ and a stop time $T_\mathrm{max}=N\Delta t$.
+     
+        \item Population growth can be modelled with the so-called logistic
+        model: \begin{equation} \frac{dx}{dt}=rx(1-x) \label{eq:logistic}
+        \end{equation} where $r$ is a growth parameter. Use the Euler
+        method to solve the logistic equation with different
+        initial conditions and values of the parameter $r$.
+
+        \item Plot the numerical solutions to the logistic model with
+        different integration steps $\Delta t$ and compare them to the
+        analytical solution, which is the sigma function:
+        \begin{equation}
+            x(t) = \left(1 + \left( \frac{1}{x_0} - 1 \right)
+                \mathrm{exp}(-rt)\right)^{-1}.
+        \end{equation}
+
+        \item Calculate the mean square error between the
+        numerical solutions $\tilde{x}_i$ and the analytical solutions $x(t)$
+        as a function of $\Delta t$:
+     
+        \begin{equation}
+            \mathrm{MSE}=\frac{1}{N}
+            \sum_{i=0}^N (\tilde{x}_i-x(i\Delta t))^2.  \label{eq:MSE}
+        \end{equation}
+     
+        Plot and explain the accuracy changes with the integration step
+        $\Delta t$.
+    \end{enumerate}
+
+
+    \item \textbf{Passive membrane} \label{ex:membrane}
+
+    The following equation describes a passive membrane, which is subject to a
+    current injection:
+
+    \begin{equation}
+        \tau_m \frac{dV(t)}{dt}=-V(t)+E_m+R_mI(t).
+        \label{eq:membrane}
+    \end{equation} 
+
+    At time $t=0$ the membrane voltage is at rest $V(t=0)=E_m$.
+
+    \begin{enumerate}
+        \item Build a model cell from equation (\ref{eq:membrane}). Use
+            $R_m=10^7\,\mathrm{ \Omega}$, $I(t)=I_0=10^{-5}\,\mathrm{ mA}$,
+            $\tau_m=10\,\mathrm{ms}$, $E_m=-80\,\mathrm{mV}$. Use the Euler
+            method to find $V(t)$.
+        \item Consider the a time-dependent current injection, with a constant
+            $10^{-5}\mathrm{mA}$ current between 10 and 100ms and zero current
+            elsewise.
+%         \begin{equation*}
+%             I(t)= 
+%             \begin{cases} 10^{-5}\,\mathrm{mA} & \text{if}\; 10\,\mathrm{ms}
+%             \leq t\leq100\,\mathrm{ms},
+%             \\
+%             0 &\text{otherwise.}
+%             \end{cases}
+%         \end{equation*}
+        Find the numerical solution for $V(t)$. Repeat the calculations for
+        several values of the membrane time constant $\tau_m$.
+    \end{enumerate}
+
+    \item \textbf{Integrate-and-fire neuron}
+        Linear models are unable to produce realistic action potentials, but
+        spikes can be simulated with a simple reset mechanism.
+        \begin{enumerate}
+
+            \item Modify the Euler method so that every time when the membrane
+            potential reaches the threshold $V_\mathrm{th}=-54\,\mathrm{mV}$ a
+            spike is generated and the potential is set to the value
+            $V_\mathrm{reset}=E_m$. 
+
+            \item Using the integration with reset simulate the neuron from
+            Exercise \ref{ex:membrane} with a constant current intensity
+            $I_0$. Plot the voltage traces for 500 ms.
+
+            \item Calculate and plot the mean firing rate as a function of
+            input intensity. How do you interpret the results?
+        \end{enumerate}
+
+    \item {\bf Report.} Submit the plain source code files for all exercises
+        and a report containg the source code, all plots and answers to the
+        questions asked.
+%     and a report. The report should be in PDF format and include source
+%     code to all exercises, answers to the
+%     questions in exercises?, and plots from ? with
+%     caption and labels.
+\end{enumerate}
+
+\vfill
+\centerline{\CAP Contact}
+\CAP
+
+\begin{tabular}{lll}
+Urs Bergmann & Phone: 2093-8924 & Email:
+urs.bergmann(at)biologie.hu-berlin.de \\
+Matthias Guggenmos & & Email: matthias.guggenmos(at)bccn-berlin.de \\
+Richard Kempter \hfill & Phone: 2093-8925 \hfill & Email:
+r.kempter(at)biologie.hu-berlin.de \\
+Robert Schmidt & Phone: 2093-8926 & Email: r.schmidt(at)biologie.hu-berlin.de
+\\
+Bartosz Telenczuk & Phone: 2093-8838 & Email:
+b.telenczuk(at)biologie.hu-berlin.de \\
+\end{tabular}
+
+\end{document}
+ 
