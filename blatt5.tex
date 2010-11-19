@@ -39,7 +39,7 @@
 }
 \parbox{11cm}{
 \begin{center}
-\large HUMBOLDT-UNIVERSIT"AT \hskip 0.1 cm ZU \hskip 0.1 cm BERLIN
+\large HUMBOLDT-UNIVERSIT\"AT \hskip 0.1 cm ZU \hskip 0.1 cm BERLIN
 \vskip 0.1 true cm
 \mgross BERNSTEIN CENTER FOR COMPUTATIONAL NEUROSCIENCE
 \end{center}
@@ -52,7 +52,7 @@
 
 \vskip 0.6 true cm
 
-\leftline{\CAP Humboldt-Universit"at zu Berlin 
+\leftline{\CAP Humboldt-Universit\"at zu Berlin 
 \hfill Phone: 030/2093-9110}
 \leftline{\CAP Philippstr. 13 House 6
               \hfill Fax: 030/2093-6771}
@@ -76,7 +76,7 @@ focus on the first order ordinary differential equations:
     \label{eq:ODE}
 \end{equation} 
 
-where $\dot{x}(t)\equiv\frac{dx}{dt}$ is the first derivative of
+where $\dot{x}(t)\equiv\frac{\mathrm{d}x}{\mathrm{d}t}$ is the first derivative of
 $x(t)$ with respect to time $t$. The solution to this equation
 is the function $x(t)$ which satisfies the above relation.
 
@@ -84,10 +84,9 @@ is the function $x(t)$ which satisfies the above relation.
 {\bf Exercises}
 \begin{enumerate}
 
-\item \textbf{Numerical solutions to ODEs} 
-
-    The simplest numerical method for solving the equation (\ref{eq:ODE})
-    is by discretization. Let's assume that the function $x(t)$ is constant
+\item \textbf{Numerical solutions to ODEs.} The simplest numerical method for 
+    solving the equation (\ref{eq:ODE}) is by discretization. Let's assume 
+    that the function $x(t)$ is constant
     during the short time interval $\Delta t$. We can then rewrite the equation
     using finite steps:
 
@@ -103,14 +102,17 @@ is the function $x(t)$ which satisfies the above relation.
     (\ref{eq:Euler}). This algorithm is called Euler method.
 
     \begin{enumerate}
-        \item Define a Python function which calculates and returns a
+        \item Define a Python function that calculates and returns a
         numerical solution to any first-order ODE. The function should
         take as an argument the function describing the right-hand side
-        of ODE $f(x,t)$, an initial condition $x_0$, an integration step
-        $\Delta t$ and a stop time $T_\mathrm{max}=N\Delta t$.
+	$f(x,t)$ of the ODE, an initial condition $x_0$, 
+	an integration step $\Delta t$, and a stop time 
+	$T_\mathrm{max}=N\Delta t$.
      
         \item Population growth can be modelled with the so-called logistic
-        model: \begin{equation} \frac{dx}{dt}=rx(1-x) \label{eq:logistic}
+        model: 
+	\begin{equation} 
+	    \frac{\mathrm{d}x}{\mathrm{d}t}=rx(1-x), \label{eq:logistic}
         \end{equation} where $r$ is a growth parameter. Use the Euler
         method to solve the logistic equation with different
         initial conditions and values of the parameter $r$.
@@ -137,24 +139,25 @@ is the function $x(t)$ which satisfies the above relation.
     \end{enumerate}
 
 
-    \item \textbf{Passive membrane} \label{ex:membrane}
-
-    The following equation describes a passive membrane, which is subject to a
-    current injection:
+    \item \textbf{Passive membrane.}\label{ex:membrane} The following 
+    equation describes the development of the membrane potential $V(t)$
+    of a passive membrane, that is subject to the current injection $I(t)$:
 
     \begin{equation}
-        \tau_m \frac{dV(t)}{dt}=-V(t)+E_m+R_mI(t).
+        \tau_m \frac{\mathrm{d}V(t)}{\mathrm{d}t}=-V(t)+E_m+R_mI(t).
         \label{eq:membrane}
     \end{equation} 
 
-    At time $t=0$ the membrane voltage is at rest $V(t=0)=E_m$.
+    At time $t=0$ the membrane voltage is at the resting potential $V(t=0)=E_m$.
 
     \begin{enumerate}
-        \item Build a model cell from equation (\ref{eq:membrane}). Use
-            $R_m=10^7\,\mathrm{ \Omega}$, $I(t)=I_0=10^{-5}\,\mathrm{ mA}$,
-            $\tau_m=10\,\mathrm{ms}$, $E_m=-80\,\mathrm{mV}$. Use the Euler
+        \item Build a model cell from equation (\ref{eq:membrane}). Use the 
+	    membrane resistance $R_m=10^7\,\mathrm{ \Omega}$, 
+	    a membrane time constant of $\tau_m=10\mathrm{ms}$,
+	    $I(t)=I_0=10^{-5}\,\mathrm{ mA}$,
+            and $E_m=-80\,\mathrm{mV}$. Use the Euler
             method to find $V(t)$.
-        \item Consider the a time-dependent current injection, with a constant
+        \item Consider a time-dependent current injection, with a constant
             $10^{-5}\mathrm{mA}$ current between 10 and 100ms and zero current
             elsewise.
 %         \begin{equation*}
@@ -166,29 +169,30 @@ is the function $x(t)$ which satisfies the above relation.
 %             \end{cases}
 %         \end{equation*}
         Find the numerical solution for $V(t)$. Repeat the calculations for
-        several values of the membrane time constant $\tau_m$.
+        $\tau_m=1\mathrm{ms},100\mathrm{ms},1\mathrm{s}$.
     \end{enumerate}
 
-    \item \textbf{Integrate-and-fire neuron}
-        Linear models are unable to produce realistic action potentials, but
+    \item \textbf{Integrate-and-fire neuron.} Linear models are unable to 
+	produce realistic action potentials, but
         spikes can be simulated with a simple reset mechanism.
         \begin{enumerate}
 
-            \item Modify the Euler method so that every time when the membrane
-            potential reaches the threshold $V_\mathrm{th}=-54\,\mathrm{mV}$ a
-            spike is generated and the potential is set to the value
-            $V_\mathrm{reset}=E_m$. 
+            \item Modify the Euler method so that every time at which the 
+	    membrane potential reaches the threshold 
+	    $V_\mathrm{th}=-54\,\mathrm{mV}$ the potential is set to the value
+            $V_\mathrm{reset}=E_m$. The times of reset correspond to the spike 
+	    times of the model.
 
-            \item Using the integration with reset simulate the neuron from
+            \item Use the integration with reset and simulate the neuron from
             Exercise \ref{ex:membrane} with a constant current intensity
-            $I_0$. Plot the voltage traces for 500 ms.
+            $I_0$. Plot the voltage traces for 500 ms simulation time.
 
             \item Calculate and plot the mean firing rate as a function of
             input intensity. How do you interpret the results?
         \end{enumerate}
 
     \item {\bf Report.} Submit the plain source code files for all exercises
-        and a report containg the source code, all plots and answers to the
+        and a report containing the source code, all plots and answers to the
         questions asked.
 %     and a report. The report should be in PDF format and include source
 %     code to all exercises, answers to the
@@ -214,3 +218,4 @@ b.telenczuk(at)biologie.hu-berlin.de \\
 
 \end{document}
  
+
