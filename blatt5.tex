@@ -87,6 +87,7 @@ is the function $x(t)$ which satisfies the above relation.
 \item \textbf{Numerical solutions to ODEs.} The simplest numerical method for 
     solving the equation (\ref{eq:ODE}) is by discretization. Let's assume 
     that the function $x(t)$ is constant
+% Note: not constancy of x(t) is required, but of f -> x(t) is linear!
     during the short time interval $\Delta t$. We can then rewrite the equation
     using finite steps:
 
@@ -186,9 +187,10 @@ is the function $x(t)$ which satisfies the above relation.
             \item Use the integration with reset and simulate the neuron from
             Exercise \ref{ex:membrane} with a constant current intensity
             $I_0$. Plot the voltage traces for 500 ms simulation time.
+            % 500ms is a bit long -> many spikes!
 
             \item Calculate and plot the mean firing rate as a function of
-            input intensity. How do you interpret the results?
+            input current. How do you interpret the results?
         \end{enumerate}
 
     \item {\bf Report.} Submit the plain source code files for all exercises
