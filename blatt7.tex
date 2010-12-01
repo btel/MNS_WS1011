@@ -1,0 +1,240 @@
+\documentclass[12pt]{article}
+
+\usepackage{amsmath}
+\usepackage{german}
+\usepackage{graphicx}
+\DeclareMathOperator\sgn{sgn}
+
+%\graphicspath{{/home/ritz/Teaching/fcn/fig/}}
+
+%----------------- layout ----------------------------------------
+
+\oddsidemargin=0in
+\textwidth=6in
+\topmargin=-0.7in
+\textheight=9.5in
+\baselineskip=16pt
+\font\mittel=cmr17
+\font\roman=cmr12
+\font\klein=cmr9
+\font\mgross=cmr10
+\newfont{\CAP}{cmcsc10 scaled 900}
+\pagestyle{empty}
+\parindent=0mm
+
+%----------------- macros ----------------------------------------
+\newcommand{\conc}[1]{[{\rm C}]_{\text{#1}}}
+\newcommand{\units}[1]{\text{#1}}
+\newcommand{\K}{\text{K}}
+\newcommand{\Na}{\text{Na}}
+\newcommand{\Cl}{\text{Cl}}
+\newcommand{\Leak}{\text{leak}}
+\newcommand{\water}{\text{H}_2\text{O}}
+\newcommand{\tderiv}[1]{\frac{\mathrm{d}#1}{\mathrm{d}t}}
+%-----------------------------------------------------------------
+
+
+\begin{document}
+
+\parbox{2cm}{
+\includegraphics[width=1.8cm]{bccnlogo.pdf}
+}
+\parbox{11cm}{
+\begin{center}
+\large HUMBOLDT-UNIVERSIT\"AT \hskip 0.1 cm ZU \hskip 0.1 cm BERLIN
+\vskip 0.1 true cm
+\mgross BERNSTEIN CENTER FOR COMPUTATIONAL NEUROSCIENCE
+\end{center}
+}
+\parbox{2cm}
+{
+\hfill
+\includegraphics[width=1.8cm]{hublogo.pdf}
+}
+
+\vskip 0.6 true cm
+
+\leftline{\CAP Humboldt-Universit\"at zu Berlin 
+\hfill Phone: 030/2093-9110}
+\leftline{\CAP Philippstr. 13 House 6
+              \hfill Fax: 030/2093-6771}
+\leftline{\CAP \hfill webpage: http://www.bccn-berlin.de/}
+
+
+\vskip 0.8 true cm
+\centerline{\bf Models of Neural Systems, WS 2010/11}
+\centerline{\bf Computer Practical 7}
+\centerline{Solutions to hand in on: December, 13th, 2010}
+
+
+\vskip 0.8 true cm
+%----------- EXERCISES BEGIN ---------------------%
+\begin{enumerate}
+\item \textbf{Potassium channel.} The gate model was first introduced by
+    Hodgkin and Huxley to describe voltage and time dependence of
+    ion conductances in the squid axon. Today it is still the standard model
+    of the ion current flow through transmembrane channels. One of its main
+    assumptions is that the probability of opening and closing of an ion
+    gate is described by the first-order kinetic equation:
+    \begin{equation}
+        \tderiv{n}=\alpha_n(V)(1-n)-\beta_n(V)n
+        \label{eq:activation}
+    \end{equation}
+
+    where $\alpha_n(V)$ and $\beta_n(V)$ are voltage-dependent transition
+    rates.
+
+    The potassium current in the Hodgkin-Huxley model is given by:
+    \begin{equation}
+        I_K=\bar{g}_{K} n(V,t)^4 (V-E_K)
+        \label{eq:potassium}
+    \end{equation}
+
+    where $E_K=-77\,\mathrm{mV}$ is the reversal potential and
+    $\bar{g}_K=36\,\mathrm{mS/cm^2}$ is the maximum conductance. Rates
+    $\alpha_n(V)$ and $\beta_n(V)$ are given by:
+    \begin{equation}
+        \alpha_n(V)=\frac{0.01(V+55)}{1-\exp(-0.1(V+55))},\quad
+        \beta_n(V)=0.125\exp(-0.0125(V+65)),
+    \end{equation}
+    where $V$ is expressed in mV, and $\alpha_n$ and $\beta_n$ are both
+    expressed in units of ms$^{-1}$.
+    \begin{enumerate}
+        \item Write Python functions defining $\alpha_n(V)$ and $\beta_n(V)$.
+        \item \label{ex:stedy-state} Plot the steady-state activation
+            $n_\infty(V)=\alpha_n(V)/(\alpha_n(V)+\beta_n(V))$ and the
+            activation time constant $\tau_n(V)=1/(\alpha_n(V)+\beta_n(V))$ in
+            a voltage range of $-150\,\mathrm{mV}\leq V \leq 150\,\mathrm{mV}$.
+        \item \textit{Voltage clamp}. Calculate the current responses
+            $I_K$ to voltage steps under voltage-clamp conditions:
+            \begin{equation*}
+                V(t)=
+                \begin{cases} V_c & \text{if $t\geq2$ ms,} \\
+                    -65\,\mathrm{mV} &\text{otherwise.}
+                \end{cases}
+            \end{equation*}
+            with the initial condition $n(t=0)=0.3177$. Plot $I_K$ as a
+            function of time. Repeat the simulation for different values of
+            clamping voltage $V_c$ from the range  $[-100\,\mathrm{mV},
+            -40\,\mathrm{mV}]$. What can be learnt from this experiment? What
+            is the predicted effect of the potassium current on the membrane
+            potential? Explain the obtained results referring to the plots of
+            the activation variables $n_\infty$ and $\tau_n$.
+        \item \textit{Current-voltage relation}. Plot the I-V relation for
+            the instantaneous and steady-state potassium
+            current.
+    \end{enumerate}
+
+
+\item \textbf{Sodium ion channel.} The sodium channel according
+    to Hodgkin-Huxley model is given by:
+    \begin{equation}
+        I_{\Na}(V,t)=\bar{g}_{\Na}m(V,t)^3h(V,t)(V-E_{\Na})
+    \end{equation}
+    where $E_{\Na}=50\,\mathrm{mV}$ is the reversal potential of sodium and
+    $\bar{g}_{\Na}=120\,\mathrm{mS/cm^2}$ is its maximal conductance.
+    The gating variables $m$, $h$ follow first-order kinetics (see
+    Equation~\ref{eq:activation}) with the following rate functions:
+    \begin{align}
+        \alpha_m&=0.1\frac{V+40}{1-\exp(-0.1(V+40))} &
+        \beta_m&=4\exp(-0.0556(V+65)) \\
+        \alpha_h&=0.07\exp(-0.05(V+65)) &
+        \beta_h&=\frac{1}{1+\exp(-0.1(V+35))}
+        \label{eq:Na_gating}
+    \end{align}
+
+    \begin{enumerate}
+    \item Plot the steady-state activation and time constant of $m$ and $h$ as
+        a function of the membrane potential. Compare the results to the
+        dynamics of the $n$ variable. Which variable is activated and which
+        deactivated by depolarisation? Which variable is fast/slow?
+    \item Note that in contrast to the model of the persistent potassium
+        current the sodium channels are described by a system of
+        ordinary differential equations.
+        %In order to solve it, you need to
+        %modify your Euler method! First, define a function which takes as
+        %arguments the instantaneous values for $m$, $h$ and returns their
+        %derivatives. Next, modify your Euler method so that it accepts a
+        %function returning any number of variables together with a vector of
+        %initial conditions and solves the  corresponding system of
+        %differential equations.
+        Calculate and plot the sodium current for $V=-20\text{mV}$,
+        $m(t=0)=0.0529$, $h(t=0)=0.5961$.
+    \item Simulate the voltage clamp experiment for the sodium current using
+        voltage steps from -65 mV to various command voltages $V_c$. Plot the
+        sodium current as a function of time. Repeat for several values of
+        $V_c$. Compare the results with respective plots of the potassium
+        current. What are the mechanisms responsible for the sodium current
+        rise and decay?
+    \item Plot the instantaneous and steady-state I-V curves for sodium
+        channels. Compare and discuss the results.
+\end{enumerate}
+
+\item {\bf Report.} Submit the plain source code files for all exercises
+         and a report containing the source code, all plots and answers to the
+         questions asked.
+
+% \item {\bf Hodgkin-Huxley model of action potential generation}
+% 
+% Action potentials (aka spikes) are a dominant feature of nervous system and
+% play
+% crucial role in the computations performed by cortex, thalamus,
+% cerebellum and associated structures.  The ionic mechanisms of action
+% potential generation were described on giant squid axon by Hodgkin and
+% Huxley. The complete model they proposed is as following:
+% \begin{equation}
+%     c_m \tderiv{V(t)}=-I_{\Na}(V(t), t) - I_{\K}(V(t), t) - I_{\Leak}(V(t),
+% t)
+%     \label{eq:HHM}
+% \end{equation}
+% where $I_{\Na}(V,t)$, $I_{\K}(V,t)$ are the sodium and potassium currents
+% which we already discussed.  $I_{\Leak}(V,t)$ is a  leakage current due to
+% chloride and other ios and can be well described by a passive ion flow:
+% \begin{equation}
+% I_{\Leak}(V,t)=\bar{g}_{\Leak}(V-E_{\Leak})
+% \end{equation}
+% with $\bar{g}_{\Leak}=0.3\,\mathrm{mS/cm^2}$ and
+% $E_{\Leak}=-54.387\,\mathrm{mV}$.
+% 
+% \begin{enumerate}
+% 
+% 
+%     \item Simulate a Hodgkin-Huxley model by numerically integrating
+%       equations for $V$, $n$, $m$, $h$ (4-dimensional system of ODEs!). Take
+% $c_m=1\,\mu\mathrm{F/cm^2}$
+%       and as initial values take: $V=-65\,\mathrm{mV}$, $m=0.0529$,
+%       $h=0.5961$, and $n=0.3177$. Make sure that the integration time step is
+% short  enough to obtain a stable and accurate solution (test several values).
+%   \item Use an external current with density
+%       $i_e=20\,\mu\mathrm{A/cm^2}$ and plot $V$, $I_{\K}$, $I_{\Na}$ as
+%       functions of time. Which currents are responsible for different
+%       phases of action potential generation?
+%   \item Plot the firing rate of the model as a function of $i_e$ over
+%       the range from 0 to 200 $\mu$A/cm$^2$. Show that the firing rate
+%       jumps discontinuously from zero to a finite value when the
+%       current passes through the minimum value to produce a sustained
+%       firing. (\textit{Hint:} to detect spikes test when the membrane
+%       potential crosses a predefined threshold).
+%   \item Apply a pulse of a negative current with
+%       $i_e=-5\,\mu\mathrm{A/cm^2}$ for 5 ms followed by $i_e=0$ and
+%       show what happens. Can you explain the results?
+% \end{enumerate}
+
+\end{enumerate}
+
+%----------- EXERCISES END -----------------------%
+
+\vfill
+\centerline{\CAP Contact}
+\CAP
+
+\begin{tabular}{lll}
+Urs Bergmann & Phone: 2093-8924 & Email:
+urs.bergmann(at)biologie.hu-berlin.de \\
+Matthias Guggenmos & & Email: matthias.guggenmos(at)bccn-berlin.de \\
+Richard Kempter \hfill & Phone: 2093-8925 \hfill & Email:
+r.kempter(at)biologie.hu-berlin.de \\
+\end{tabular}
+
+\end{document}
+ 
