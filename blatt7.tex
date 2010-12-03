@@ -91,7 +91,7 @@
     \end{equation}
 
     where $E_K=-77\,\mathrm{mV}$ is the reversal potential and
-    $\bar{g}_K=36\,\mathrm{mS/cm^2}$ is the maximum conductance. Rates
+    $\bar{g}_K=36\,\mathrm{mS}$ is the maximum conductance. Rates
     $\alpha_n(V)$ and $\beta_n(V)$ are given by:
     \begin{equation}
         \alpha_n(V)=\frac{0.01(V+55)}{1-\exp(-0.1(V+55))},\quad
@@ -107,15 +107,16 @@
             a voltage range of $-150\,\mathrm{mV}\leq V \leq 150\,\mathrm{mV}$.
         \item \textit{Voltage clamp}. Calculate the current responses
             $I_K$ to voltage steps under voltage-clamp conditions:
-            \begin{equation*}
+            \begin{equation}
                 V(t)=
                 \begin{cases} V_c & \text{if $t\geq2$ ms,} \\
                     -65\,\mathrm{mV} &\text{otherwise.}
                 \end{cases}
-            \end{equation*}
+                \label{eq:voltageclamp}
+            \end{equation}
             with the initial condition $n(t=0)=0.3177$. Plot $I_K$ as a
             function of time. Repeat the simulation for different values of
-            clamping voltage $V_c$ from the range  $[-100\,\mathrm{mV},
+            command voltage $V_c$ from the range  $[-100\,\mathrm{mV},
             -40\,\mathrm{mV}]$. What can be learnt from this experiment? What
             is the predicted effect of the potassium current on the membrane
             potential? Explain the obtained results referring to the plots of
@@ -149,8 +150,9 @@
         dynamics of the $n$ variable. Which variable is activated and which
         deactivated by depolarisation? Which variable is fast/slow?
     \item Note that in contrast to the model of the persistent potassium
-        current the sodium channels are described by a system of
-        ordinary differential equations.
+        current, which is given as a single ordinary differential equation, the
+        sodium channels are described by a system of ordinary
+        differential equations.
         %In order to solve it, you need to
         %modify your Euler method! First, define a function which takes as
         %arguments the instantaneous values for $m$, $h$ and returns their
@@ -161,11 +163,12 @@
         Calculate and plot the sodium current for $V=-20\text{mV}$,
         $m(t=0)=0.0529$, $h(t=0)=0.5961$.
     \item Simulate the voltage clamp experiment for the sodium current using
-        voltage steps from -65 mV to various command voltages $V_c$. Plot the
-        sodium current as a function of time. Repeat for several values of
-        $V_c$. Compare the results with respective plots of the potassium
-        current. What are the mechanisms responsible for the sodium current
-        rise and decay?
+        voltage steps from -65 mV to various command voltages $V_c$, as given
+        in equation~\ref{eq:voltageclamp}. Plot the sodium current as a
+        function of time for several values of the command voltage $V_c$.
+        Compare the results with respective plots of the potassium
+        current. What are the mechanisms responsible for the sodium
+        current rise and decay?
     \item Plot the instantaneous and steady-state I-V curves for sodium
         channels. Compare and discuss the results.
 \end{enumerate}
