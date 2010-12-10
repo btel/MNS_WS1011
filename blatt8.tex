@@ -74,49 +74,75 @@
 \begin{enumerate}
 
 \item {\bf Hodgkin-Huxley model of action potential generation.}
-% Action
-% potentials (aka spikes) are a dominant feature of nervous systems and
-% play crucial roles in the computation performed by cortex, thalamus,
-% cerebellum and associated structures.  The ionic mechanisms of action
-% potential generation were described for the giant squid axon by Hodgkin and
-% Huxley. The complete model they proposed is as following:
-Hodgkin and Huxley proposed the following model for action potential
-generation in the giant squid axon:
-\begin{equation}
-    c_m \tderiv{V(t)}=-I_{\Na}(V(t), t) - I_{\K}(V(t), t) - I_{\Leak}(V(t),t)
+Action potentials (aka spikes) are a dominant feature of nervous systems and
+play crucial roles in the computation performed by cortex, thalamus,
+cerebellum and associated structures.  The ionic mechanisms of action
+potential generation were described for the squid giant axon by Hodgkin
+and Huxley. The complete model they proposed is as following:
+% Hodgkin and Huxley proposed the following model for action potential
+% generation in the squid giant axon:
+\begin{equation*}
+    C_m \tderiv{V(t)}=-I_{\Na}(V(t), t) - I_{\K}(V(t), t) - I_{\Leak}(V(t),t)
 + I_e
     \label{eq:HHM}
-\end{equation}
-where $I_{\Na}(V,t)$, $I_{\K}(V,t)$ are the sodium and potassium currents
-which we already discussed.  $I_{\Leak}(V,t)$ is a passive leakage current due
-to chloride and other ions:
-\begin{equation}
+\end{equation*}
+where $I_{\Na}(V,t)$ and $I_{\K}(V,t)$ are the sodium and potassium currents
+that we already discussed in the previous sheet:
+\begin{align*}
+    I_{\Na}(V,t) &= \bar{g}_{\Na}m(V,t)^3h(V,t)(V-E_{\Na}), \\
+    I_K(V,t) &= \bar{g}_{K} n(V,t)^4 (V-E_K),
+    \label{eq:potassium}
+\end{align*}
+with the reversal potentials $E_{\Na}=50\,\mathrm{mV}$ and
+$E_K=-77\,\mathrm{mV}$ and the maximal conductances
+$\bar{g}_{\Na}=120\,\mathrm{mS}$ and $\bar{g}_K=36\,\mathrm{mS}$. The gating
+variables follow a first-order kinetic equation of the type
+\begin{equation*}
+    \tderiv{x}=\alpha_x(V)(1-x)-\beta_x(V)x,
+    \label{eq:activation}
+\end{equation*}
+with $x \in \{n,m,h\}$ and the voltage dependent transition rates $\alpha$
+and $\beta$:
+\begin{align*}
+        \alpha_n(V)&=\frac{0.01(V+55)}{1-\exp(-0.1(V+55))}, &
+        \beta_n(V)&=0.125\exp(-0.0125(V+65)), \\
+        \alpha_m(V)&=0.1\frac{V+40}{1-\exp(-0.1(V+40))}, &
+        \beta_m(V)&=4\exp(-0.0556(V+65)), \\
+        \alpha_h(V)&=0.07\exp(-0.05(V+65)), &
+        \beta_h(V)&=\frac{1}{1+\exp(-0.1(V+35))}.
+\end{align*}
+$I_{\Leak}(V,t)$ is a passive leakage current due to chloride and other ions:
+\begin{equation*}
 I_{\Leak}(V,t)=\bar{g}_{\Leak}(V-E_{\Leak})
-\end{equation}
+\end{equation*}
 with $\bar{g}_{\Leak}=0.3\,\mathrm{mS}$ and
 $E_{\Leak}=-54.387\,\mathrm{mV}$.
 
 \begin{enumerate}
     \item Simulate the Hodgkin-Huxley model by numerically integrating the
-        equations for $V$, $n$, $m$, $h$ (4-dimensional system of ODEs!). Take
-        $c_m=1\,\mu\mathrm{F}$ and as initial values take:
+        equations for $V$, $n$, $m$ and $h$ (4-dimensional system of ODEs!).
+        Take $I_e=0$A, $C_m=1\,\mu\mathrm{F}$ and as initial values take
         $V=-65\,\mathrm{mV}$, $m=0.0529$, $h=0.5961$, and $n=0.3177$. Make
         sure that the integration time step is
         short enough to obtain a stable and accurate solution (test several
         values).
-  \item Use an external current $I_e=20\,\mu\mathrm{A}$ and plot $V$,
-        $I_{\K}$, $I_{\Na}$ as functions of time. Which currents are
+  \item Use a constant external current $I_e=20\,\mu\mathrm{A}$ and plot $V$,
+        $I_{\K}$ and $I_{\Na}$ as functions of time. Which currents are
         responsible for different phases of action potential generation?
   \item Plot the firing rate of the model as a function of $I_e$ over
       the range from 0 to 200 $\mu$A. Show that the firing rate
       jumps discontinuously from zero to a finite value when the
       current passes through the minimum value to produce a sustained
-      firing. (\textit{Hint:} use a membrane threshold for spike
+      firing. (\textit{Hint:} use a voltage threshold criterion for spike
       detection).
   \item Apply a pulse of a negative current with
       $I_e=-5\,\mu\mathrm{A}$ for 5 ms followed by $I_e=0$ and
-      show what happens. Can you explain the results?
+      show what happens. Explain the obtained result!
 \end{enumerate}
+
+\item {\bf Report.} Submit the plain source code files for all exercises
+         and a report containing the source code, all plots and answers to the
+         questions asked.
 
 % In the Hodgkin-Huxley formalism, currents flowing through a large number of
 % ion
