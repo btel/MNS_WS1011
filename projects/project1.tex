@@ -62,99 +62,84 @@
 
 
 \vskip 0.8 true cm
-\centerline{\bf Models of Neural Systems, WS 2009/10}
-\centerline{\bf Project 1: Phase oscillators} 
-\centerline{Project presentation and report submission: February,
-8th, 2010}
+\centerline{\bf Models of Neural Systems, WS 2010/11}
+\centerline{\bf Project N/A: Short-term synaptic plasticity} 
+\centerline{Project presentation and report submission: N/A}
 
 \vskip 0.8 true cm
 
-{\bf Background}
+\section{Background}
 
-Neural systems quite often reveal periodic dynamics e.g. regular firing
-neurons or oscillatory populations of neurons. The details of
-the dynamics of such models tend to be quite complicated which makes
-it hard to analyse them. Nevertheless, it can be shown that  the
-dynamics  in the limit of small perturbations can be reduced to so-called phase
-oscillators in which only the phase of the oscillation is modelled and
-the amplitude is assumed to be constant. The very simplest models has
-the following form:
+\section{}
+\begin{enumerate}
+    \item Tsodyks-Markram model of short-term synaptic depression        
 
+        \begin{enumerate}
+            \item implement the model of short-term synaptic
+                depression by Tsodyks and Markram \cite{},
+            \item using short spike trains with pre-define inter-spike
+                intervals show the effects of depression and recovery,
+            \item demonstrate how depression and recovery depend on
+                parameters of the model: $\tau_{\mathrm{rec}}$,
+                $U_{\mathrm{SE}}$ and $\tau_{\mathrm{inact}}$.
+        \end{enumerate}
 
-\begin{equation}
-    \tderiv{\phi}(t)=\omega
-    \label{<++>}
-\end{equation}
+    \item Limiting frequency
 
-Here you will study synchronisation properties of such phase
-oscillators.
-\vskip 0.8 true cm
+        \begin{enumerate}
+            \item feed the dynamic synapse with an input modelled with
+                a Poisson spike train with a pre-defined firing rate
+                and no refractoriness
+            \item plot the steady-state amplitude of excitatory post-synaptic
+                current  (EPSC) as a function of the input firing rate
+            \item demonstrate that over a certain input frequency
+                (limitting frequency) the output firing rate saturates
+                and transmits no more information about the input firing
+                rate
+        \end{enumerate}
 
-{\bf Problems}
+    \item Regulating neural code
+
+        \begin{enumerate}
+            \item simulate the responses of the neuron to inputs with
+            constant firing rates and fast-transient
+        \item investigate in which parameter regimes the synapse
+            transmits information about the mean firing rate and  the
+            transients
+        \end{enumerate}
+
+    \item Gain modulation
+
+        This part of the project may be solved in one of simulator of
+        spiking neural networks (PyNN or Brian).
+
+The goal of this part is to show that synaptic depression may
+underline multiplication of neuronal signals \cite{}.
 
 \begin{enumerate}
-    \item Implement a single oscillator perturbed by an external
-        stimulus $I(t)$. Lets assume that the effect of the stimulus
-         on the dynamics is phase-dependent,
-        so that we can write:
-        \begin{equation}
-            \tderiv{\phi_i} = \omega_i + I(t) \sin{\phi_i}
-            \label{<++>}
-        \end{equation}
-        where the stimulus is a short pulse starting at time
-        $t_\mathrm{onset}$ with duration $T$ and intensity of $I_0$:
-        \begin{equation}
-          I(t)=
-          \begin{cases}
-              I_0, & \text{if } t_\mathrm{onset}+T>t>t_{\mathrm{onset}} \\
-              0, & \text{otherwise} 
-          \end{cases}
-            \label{eq:stimulus}
-        \end{equation}
-        Plot phase-response curve i.e. the post-stimulus phase, as a
-        function of the pre-stimulus phase for different $I$ and
-        $t_\mathrm{onset}$.
-    \item Study the effect of the stimulus on a population of
-        $N=100$ identical phase oscillators (no coupling) with random initial
-        conditions. Plot the phases as a color image. Calculate and
-        plot the order parameter:
-        \begin{equation}
-            Z = \left|{\sum_i^N \exp{(j\phi_i)}}\right|,
-            \label{eq:order_parameter}
-        \end{equation}
-        where $j=\sqrt{-1}$ is an imaginary unit. What does the
-        order parameter quantify?
-    \item Introduce white noise to the model:
-        \begin{equation}
-            \tderiv{\phi_i} = \omega + I(t)\sin{\phi_i} + \sigma \eta(t),
-            \label{eq:phase_with_noise}
-        \end{equation}
-        where $\eta(t)$ is a normally distributed random variable of
-        unit standard deviation and zero mean. Study the effects of
-        the noise on the dynamics and synchronisation properties.
-    \item \textit{Kuramoto mode} Simulate and analyse a population of
-        globally coupled phase oscillators without noise. The dynamics of each
-        oscillator is described by:
-        \begin{equation}
-            \tderiv{\phi_i} = \omega_i + K/N\sum_{j=1}^N\sin(\phi_j-\phi_i),
-            \label{eq:kuramoto}
-        \end{equation}
-        where $\omega_i$ is an uniformly distributed random variable.
+\item simulate a leaky integrate-and-fire neuron with inhibitory and
+    excitatory synpases, where only excitatory synapses are depressing
 
-        Under which conditions can the oscillators synchronize? Plot
-        the order parameter $Z$ as a function of the bifurcation parameter $K$.
-    \item It has been shown that oscillators can also form distinct
-        clusters of synchronised activity. It can be achieved in a
-        model when a non-trivial coupling is chosen. Read the paper
-        Tass, Stochastic phase resetting of stimulus-locked responses of two coupled oscillators: transient response clustering, synchronization, and desynchronization. Chaos vol. 13 (1) pp. 364-376
-        and try to reproduce its results.
+\item plot an output firing rate as a function of the input firing
+    rate at different levels of inhibition. show that inhibition
+    modulates the input-output gain.
+
+\item repeat the above experiment without synaptic depression. How
+    does the input-output relation change?
 \end{enumerate}
 
-Richard Kempter \hfill Phone: 2093-8925 \hfill
-Email: r.kempter(at)biologie.hu-berlin.de \\
-Robert Schmidt \hfill Phone: 2093-8926 \hfill
-Email: r.schmidt@biologie.hu-berlin.de \\
-Bartosz Telenczuk \hfill Phone: 2093-8838 \hfill
-Email: b.telenczuk@biologie.hu-berlin.de \\
+
+\end{enumerate}
+
+
+
+\vfill
+\begin{tabular}{lll}
+Urs Bergmann & Phone: 2093-8924 & Email:
+urs.bergmann(at)biologie.hu-berlin.de \\
+Matthias Guggenmos & & Email: matthias.guggenmos(at)bccn-berlin.de \\
+Richard Kempter \hfill & Phone: 2093-8925 \hfill & Email:
+r.kempter(at)biologie.hu-berlin.de \\
+\end{tabular}
 
 \end{document}
