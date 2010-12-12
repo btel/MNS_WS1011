@@ -1,0 +1,160 @@
+\documentclass[12pt]{article}
+
+\usepackage{amsmath}
+\usepackage{german}
+\usepackage{graphicx}
+\DeclareMathOperator\sgn{sgn}
+
+%\graphicspath{{/home/ritz/Teaching/fcn/fig/}}
+
+%----------------- layout ----------------------------------------
+
+\oddsidemargin=0in
+\textwidth=6in
+\topmargin=-0.7in
+\textheight=9.5in
+\baselineskip=16pt
+\font\mittel=cmr17
+\font\roman=cmr12
+\font\klein=cmr9
+\font\mgross=cmr10
+\newfont{\CAP}{cmcsc10 scaled 900}
+\pagestyle{empty}
+\parindent=0mm
+
+%----------------- macros ----------------------------------------
+\newcommand{\conc}[1]{[{\rm C}]_{\text{#1}}}
+\newcommand{\units}[1]{\text{#1}}
+\newcommand{\K}{\text{K}}
+\newcommand{\Na}{\text{Na}}
+\newcommand{\Cl}{\text{Cl}}
+\newcommand{\Leak}{\text{leak}}
+\newcommand{\water}{\text{H}_2\text{O}}
+\newcommand{\tderiv}[1]{\frac{\mathrm{d}#1}{\mathrm{d}t}}
+%-----------------------------------------------------------------
+
+
+\begin{document}
+
+\parbox{2cm}{
+\includegraphics[width=1.8cm]{../bccnlogo.pdf}
+}
+\parbox{11cm}{
+\begin{center}
+\large HUMBOLDT-UNIVERSIT"AT \hskip 0.1 cm ZU \hskip 0.1 cm BERLIN
+\vskip 0.1 true cm
+\mgross BERNSTEIN CENTER FOR\\ COMPUTATIONAL NEUROSCIENCE
+\end{center}
+}
+\parbox{2cm}
+{
+\hfill
+\includegraphics[width=1.8cm]{../hublogo.pdf}
+}
+
+\vskip 0.6 true cm
+
+\leftline{\CAP Humboldt-Universit"at zu Berlin 
+\hfill Phone: 030/2093-9110}
+\leftline{\CAP Philippstr. 13 House 6
+             \hfill Fax: 030/2093-6771}
+\leftline{\CAP \hfill webpage: http://www.bccn-berlin.de/}
+
+
+\vskip 0.8 true cm
+\centerline{\bf Models of Neural Systems, WS 2009/10}
+\centerline{\bf Project 1: Phase oscillators} 
+\centerline{Project presentation and report submission: February,
+8th, 2010}
+
+\vskip 0.8 true cm
+
+{\bf Background}
+
+Neural systems quite often reveal periodic dynamics e.g. regular firing
+neurons or oscillatory populations of neurons. The details of
+the dynamics of such models tend to be quite complicated which makes
+it hard to analyse them. Nevertheless, it can be shown that  the
+dynamics  in the limit of small perturbations can be reduced to so-called phase
+oscillators in which only the phase of the oscillation is modelled and
+the amplitude is assumed to be constant. The very simplest models has
+the following form:
+
+
+\begin{equation}
+    \tderiv{\phi}(t)=\omega
+    \label{<++>}
+\end{equation}
+
+Here you will study synchronisation properties of such phase
+oscillators.
+\vskip 0.8 true cm
+
+{\bf Problems}
+
+\begin{enumerate}
+    \item Implement a single oscillator perturbed by an external
+        stimulus $I(t)$. Lets assume that the effect of the stimulus
+         on the dynamics is phase-dependent,
+        so that we can write:
+        \begin{equation}
+            \tderiv{\phi_i} = \omega_i + I(t) \sin{\phi_i}
+            \label{<++>}
+        \end{equation}
+        where the stimulus is a short pulse starting at time
+        $t_\mathrm{onset}$ with duration $T$ and intensity of $I_0$:
+        \begin{equation}
+          I(t)=
+          \begin{cases}
+              I_0, & \text{if } t_\mathrm{onset}+T>t>t_{\mathrm{onset}} \\
+              0, & \text{otherwise} 
+          \end{cases}
+            \label{eq:stimulus}
+        \end{equation}
+        Plot phase-response curve i.e. the post-stimulus phase, as a
+        function of the pre-stimulus phase for different $I$ and
+        $t_\mathrm{onset}$.
+    \item Study the effect of the stimulus on a population of
+        $N=100$ identical phase oscillators (no coupling) with random initial
+        conditions. Plot the phases as a color image. Calculate and
+        plot the order parameter:
+        \begin{equation}
+            Z = \left|{\sum_i^N \exp{(j\phi_i)}}\right|,
+            \label{eq:order_parameter}
+        \end{equation}
+        where $j=\sqrt{-1}$ is an imaginary unit. What does the
+        order parameter quantify?
+    \item Introduce white noise to the model:
+        \begin{equation}
+            \tderiv{\phi_i} = \omega + I(t)\sin{\phi_i} + \sigma \eta(t),
+            \label{eq:phase_with_noise}
+        \end{equation}
+        where $\eta(t)$ is a normally distributed random variable of
+        unit standard deviation and zero mean. Study the effects of
+        the noise on the dynamics and synchronisation properties.
+    \item \textit{Kuramoto mode} Simulate and analyse a population of
+        globally coupled phase oscillators without noise. The dynamics of each
+        oscillator is described by:
+        \begin{equation}
+            \tderiv{\phi_i} = \omega_i + K/N\sum_{j=1}^N\sin(\phi_j-\phi_i),
+            \label{eq:kuramoto}
+        \end{equation}
+        where $\omega_i$ is an uniformly distributed random variable.
+
+        Under which conditions can the oscillators synchronize? Plot
+        the order parameter $Z$ as a function of the bifurcation parameter $K$.
+    \item It has been shown that oscillators can also form distinct
+        clusters of synchronised activity. It can be achieved in a
+        model when a non-trivial coupling is chosen. Read the paper
+        Tass, Stochastic phase resetting of stimulus-locked responses of two coupled oscillators: transient response clustering, synchronization, and desynchronization. Chaos vol. 13 (1) pp. 364-376
+        and try to reproduce its results.
+\end{enumerate}
+
+Richard Kempter \hfill Phone: 2093-8925 \hfill
+Email: r.kempter(at)biologie.hu-berlin.de \\
+Robert Schmidt \hfill Phone: 2093-8926 \hfill
+Email: r.schmidt@biologie.hu-berlin.de \\
+Bartosz Telenczuk \hfill Phone: 2093-8838 \hfill
+Email: b.telenczuk@biologie.hu-berlin.de \\
+
+\end{document}
