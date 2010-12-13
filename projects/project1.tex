@@ -1,8 +1,8 @@
 \documentclass[12pt]{article}
 
 \usepackage{amsmath}
-\usepackage{german}
 \usepackage{graphicx}
+\usepackage{natbib}
 \DeclareMathOperator\sgn{sgn}
 
 %\graphicspath{{/home/ritz/Teaching/fcn/fig/}}
@@ -63,74 +63,90 @@
 
 \vskip 0.8 true cm
 \centerline{\bf Models of Neural Systems, WS 2010/11}
-\centerline{\bf Project N/A: Short-term synaptic plasticity} 
-\centerline{Project presentation and report submission: N/A}
+\centerline{\bf Project 10: Short-term synaptic plasticity} 
+\centerline{Project presentation and report submission: February,
+15th, 2011}
 
 \vskip 0.8 true cm
 
-\section{Background}
-
-\section{}
 \begin{enumerate}
-    \item Tsodyks-Markram model of short-term synaptic depression        
+    \item \textbf{Tsodyks-Markram model of short-term synaptic
+        depression}        
 
         \begin{enumerate}
-            \item implement the model of short-term synaptic
-                depression by Tsodyks and Markram \cite{},
-            \item using short spike trains with pre-define inter-spike
-                intervals show the effects of depression and recovery,
-            \item demonstrate how depression and recovery depend on
+            \item Implement the model of short-term synaptic
+                depression by \citet{Tsodyks97}.
+            \item Using short spike trains with appropriately-chosen inter-spike
+                intervals show the effects of depression and recovery.
+            \item Demonstrate how depression and recovery depend on
                 parameters of the model: $\tau_{\mathrm{rec}}$,
                 $U_{\mathrm{SE}}$ and $\tau_{\mathrm{inact}}$.
         \end{enumerate}
 
-    \item Limiting frequency
+    \item \textbf{Limiting frequency}
 
         \begin{enumerate}
-            \item feed the dynamic synapse with an input modelled with
+            \item Feed the dynamic synapse with an input modelled with
                 a Poisson spike train with a pre-defined firing rate
-                and no refractoriness
-            \item plot the steady-state amplitude of excitatory post-synaptic
-                current  (EPSC) as a function of the input firing rate
-            \item demonstrate that over a certain input frequency
-                (limitting frequency) the output firing rate saturates
+                and no refractoriness.
+            \item Plot the steady-state amplitude of excitatory post-synaptic
+                current  (EPSC) as a function of the input firing
+                rate.
+            \item Demonstrate that over a certain input frequency
+                (limiting frequency) the output firing rate saturates
                 and transmits no more information about the input firing
-                rate
+                rate.
         \end{enumerate}
 
-    \item Regulating neural code
+    \item \textbf{Regulating neural code}
 
         \begin{enumerate}
-            \item simulate the responses of the neuron to inputs with
-            constant firing rates and fast-transient
-        \item investigate in which parameter regimes the synapse
-            transmits information about the mean firing rate and  the
-            transients
+            \item Simulate the responses of the neuron to inputs with
+            constant firing rates and fast transients.
+        \item Investigate in which parameter regimes the synapse
+            transmits information about either mean firing or  the
+            transients.
         \end{enumerate}
 
-    \item Gain modulation
+    \item \textbf{Gain modulation}
 
         This part of the project may be solved in one of simulator of
         spiking neural networks (PyNN or Brian).
 
 The goal of this part is to show that synaptic depression may
-underline multiplication of neuronal signals \cite{}.
+underline multiplication of neuronal signals \citep{Rothman09}.
 
 \begin{enumerate}
-\item simulate a leaky integrate-and-fire neuron with inhibitory and
-    excitatory synpases, where only excitatory synapses are depressing
+\item Simulate a leaky integrate-and-fire neuron with inhibitory and
+    excitatory synapses, where only the excitatory synapses are
+    depressing.
 
-\item plot an output firing rate as a function of the input firing
-    rate at different levels of inhibition. show that inhibition
+\item Plot an output firing rate as a function of the input firing
+    rate at different levels of inhibition. Show that inhibition
     modulates the input-output gain.
 
-\item repeat the above experiment without synaptic depression. How
+\item Repeat the above experiment without synaptic depression in the
+    excitatory synapses. How
     does the input-output relation change?
 \end{enumerate}
 
 
 \end{enumerate}
 
+
+\begin{thebibliography}{9}
+
+    \bibitem[Tsodyks and Markram (1997)]{Tsodyks97}
+      M. Tsodyks and H. Markram. \emph{The neural code between neocortical
+      pyramidal neurons depends on neurotransmitter release
+      probability.} Proceedings of the National Academy of Sciences
+      94 (2): 719-723, 1997
+
+  \bibitem[Rothman et al. (2009)]{Rothman09}
+       J.S. Rothman, L. Cathala, V. Steuber  and R.A. Silver.
+       \emph{Synaptic depression enables neuronal gain control.} Nature
+       457 (7232): 1015--1018, 2009
+      \end{thebibliography}
 
 
 \vfill
@@ -143,3 +159,5 @@ r.kempter(at)biologie.hu-berlin.de \\
 \end{tabular}
 
 \end{document}
+
+\bibliographystyle{plainnat}
