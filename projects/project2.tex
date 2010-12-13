@@ -1,0 +1,200 @@
+\documentclass[12pt]{article}
+
+\usepackage{amsmath}
+\usepackage{german}
+\usepackage{graphicx}
+\DeclareMathOperator\sgn{sgn}
+
+%\graphicspath{{/home/ritz/Teaching/fcn/fig/}}
+
+%----------------- layout ----------------------------------------
+
+\oddsidemargin=0in
+\textwidth=6in
+\topmargin=-0.7in
+\textheight=9.5in
+\baselineskip=16pt
+\font\mittel=cmr17
+\font\roman=cmr12
+\font\klein=cmr9
+\font\mgross=cmr10
+\newfont{\CAP}{cmcsc10 scaled 900}
+\pagestyle{empty}
+\parindent=0mm
+
+%----------------- macros ----------------------------------------
+\newcommand{\conc}[1]{[{\rm C}]_{\text{#1}}}
+\newcommand{\units}[1]{\text{#1}}
+\newcommand{\K}{\text{K}}
+\newcommand{\Na}{\text{Na}}
+\newcommand{\Cl}{\text{Cl}}
+\newcommand{\Leak}{\text{leak}}
+\newcommand{\water}{\text{H}_2\text{O}}
+\newcommand{\tderiv}[1]{\frac{\mathrm{d}#1}{\mathrm{d}t}}
+%-----------------------------------------------------------------
+
+
+\begin{document}
+
+\parbox{2cm}{
+\includegraphics[width=1.8cm]{../bccnlogo.pdf}
+}
+\parbox{11cm}{
+\begin{center}
+\large HUMBOLDT-UNIVERSIT"AT \hskip 0.1 cm ZU \hskip 0.1 cm BERLIN
+\vskip 0.1 true cm
+\mgross BERNSTEIN CENTER FOR\\ COMPUTATIONAL NEUROSCIENCE
+\end{center}
+}
+\parbox{2cm}
+{
+\hfill
+\includegraphics[width=1.8cm]{../hublogo.pdf}
+}
+
+\vskip 0.6 true cm
+
+\leftline{\CAP Humboldt-Universit"at zu Berlin 
+\hfill Phone: 030/2093-9110}
+\leftline{\CAP Philippstr. 13 House 6
+             \hfill Fax: 030/2093-6771}
+\leftline{\CAP \hfill webpage: http://www.bccn-berlin.de/}
+
+
+\vskip 0.8 true cm
+\centerline{\bf Models of Neural Systems, WS 2010/11}
+\centerline{\bf Project 2: Spike-timing-dependent plasticity}
+\centerline{Project presentation and report submission: February,
+15th, 2011}
+
+\vskip 0.8 true cm
+
+{\bf Background}
+
+Learning in the brain is believed to be implemented by synapses that are
+able to adjust their weights to different input and output
+distributions. However, the mechanisms underlying this synaptic
+plasticity still remain unclear. Hebb postulated that the increase in
+synaptic weights requires coherent pre- and post-synaptic activity,
+but he did not provide much details on how these activities could be
+defined. Here, you will study a plasticity rule, that is based on the relative
+timing of spikes in pre- and post-synaptic terminals. You will test if such
+a rule will lead to a stable distribution of synaptic weights and the
+generation of output spike times with realistic statistics.
+
+\vskip 0.8 true cm
+
+{\bf Problems}
+
+\begin{enumerate}
+    \item \textit{Literature review.} Study the paper of Song, Miller,
+        Abbott, Nature Neuroscience 2000. Focus on the figures and the method
+        section. What is the hypothesis? What are the main results
+        and conclusions? What are the main assumptions of the model?
+        What are the strengths and weaknesses of the paper?
+
+    \item
+        Implement the leaky integrate-and-fire model with inhibitory
+        and excitatory inputs described in
+        the paper (see Methods section):
+
+        \begin{equation}
+            \tau_m
+            \tderiv{V}=V_\mathrm{rest}-V+g_\mathrm{exc}(t)(E_{exc}-V)+g_\mathrm{inh}(t)(E_\mathrm{inh}-V)
+            \label{eq:lif}
+        \end{equation}
+    \item Assume that each presynaptic spike at synapse $a$ results in a sudden
+        change of the post-synaptic conductance, which then decays
+        exponentially until the next input arrives:
+        \begin{equation}
+            g_\mathrm{syn} \rightarrow g_\mathrm{syn} +
+            \bar{g}_\mathrm{a},\;\text{if } t =
+            t_\mathrm{pre}
+            \label{eq:conductance2}
+        \end{equation}
+        \begin{equation}
+            \tau_\mathrm{syn} \tderiv{g_\mathrm{syn}} =
+            -g_\mathrm{syn},
+            \label{eq:conductance2}
+        \end{equation}
+        where $\mathrm{syn} \in  \left\{\mathrm{exc},
+        \mathrm{inh}\right\}$, $t_\mathrm{pre}$ is the time of a pre-synaptic
+        time and $\bar{g}_\mathrm{a}$ is the peak synaptic conductance of
+        synapse $a$.
+    \item  Spike-timing-dependent synaptic plasticity is implemented by
+        means of modification of the peak conductances
+        of excitatory synapses $\bar{g}_\mathrm{a}$ (inhibitory
+        synapses are not changed) according
+        to the rules:
+        \begin{equation} 
+            \bar{g}_\mathrm{a} \rightarrow
+            \bar{g}_\mathrm{a}+M(t)\bar{g}_\mathrm{max},\; \;
+            M \rightarrow M - A_-, \; \;
+            \text{if } t =
+            t_\mathrm{pre}
+        \end{equation}
+        \begin{equation} 
+            \bar{g}_\mathrm{a} \rightarrow
+            \bar{g}_\mathrm{a}+
+            P_a(t)\bar{g}_\mathrm{max},\; \;
+            P_a \rightarrow P_a + A_+, \; \;
+            \text{if } t =
+            t_\mathrm{post}
+        \end{equation}
+        %Every time the post-synaptic neuron fires an action potential,
+        %$M(t)$ is decremented by an amount $A_-$, and every time a
+        %synapse receives an action potential from the pre-synaptic
+        %neuron, $P(t)$ is incremented by an amount $A_{+}$.
+        If $\bar{g}_\mathrm{a}<0$ the peak conductance is clamped to zero and
+        if $\bar{g}_\mathrm{a}>\bar{g}_\mathrm{max}$ it is reset to
+        $\overline{g}_\mathrm{max}$. If there are no pre- or
+        post-synaptic spikes $M(t)$ and $P(t)$ decay exponentially:
+        \begin{equation}
+            \tau_{-}\tderiv{M}=-M \text{ and } \tau_{+}\tderiv{P_a}=-P_a.
+            \label{eq:stdp}
+        \end{equation}
+
+
+    \item For the initial excitatory peak conductances take
+        $\bar{g}_\mathrm{a}=\bar{g}_\mathrm{max}$ for all $a$. Simulate the
+        model with $N=1000$ excitatory and $M=200$ inhibitory synapses,
+        both of which receive independent
+        Poisson spike trains (10 Hz for inhibitory, 10 -- 40 Hz
+        for excitatory). Plot the final weight distribution for
+        different excitatory firing rates. Plot the output firing rate
+        and coefficient of variation as a function of the input firing
+        rate.
+
+    \item Simulate the model with inputs consisting of bursts of
+        action potentials. To this end, take the inputs to be silent
+        except for isolated events represented by bursts of spikes
+        with a Poisson distribution at 100 Hz for 20 ms. The inputs
+        arrive at each synapse with random latencies drawn from a
+        Gaussian distribution (mean 0, standard deviation 15 ms). Plot
+        a response to the same burst of spikes at the beginning and
+        at the end of the simulation. Explain the observed differences.
+        Plot the weights of synapses as a function of the relative
+        latencies of incoming spike bursts (Song et al., 2000, Figure 4).
+\end{enumerate}
+
+\vskip 0.8 true cm
+{\bf Literature}
+\vskip 0.8 true cm
+
+S.~Song, K.D.~Miller and L.F.~Abbott (2000). Competitive Hebbian learning
+through spike-timing-dependent synaptic plasticity.
+\emph{Nature Neuroscience} 3(9):919-926.\newline
+
+\vfill
+\centerline{\CAP Contact}
+\CAP
+
+\begin{tabular}{lll}
+\underline{Urs Bergmann} & Phone: 2093-8924 & Email:
+urs.bergmann(at)biologie.hu-berlin.de \\
+Matthias Guggenmos & & Email: matthias.guggenmos(at)bccn-berlin.de \\
+Richard Kempter \hfill & Phone: 2093-8925 \hfill & Email:
+r.kempter(at)biologie.hu-berlin.de \\
+\end{tabular}
+
+\end{document}

@@ -1,0 +1,165 @@
+\documentclass[12pt]{article}
+
+\usepackage{amsmath}
+\usepackage{german}
+\usepackage{graphicx}
+\DeclareMathOperator\sgn{sgn}
+
+%\graphicspath{{/home/ritz/Teaching/fcn/fig/}}
+
+%----------------- layout ----------------------------------------
+
+\oddsidemargin=0in
+\textwidth=6in
+\topmargin=-0.7in
+\textheight=9.5in
+\baselineskip=16pt
+\font\mittel=cmr17
+\font\roman=cmr12
+\font\klein=cmr9
+\font\mgross=cmr10
+\newfont{\CAP}{cmcsc10 scaled 900}
+\pagestyle{empty}
+\parindent=0mm
+
+%----------------- macros ----------------------------------------
+\newcommand{\conc}[1]{[{\rm C}]_{\text{#1}}}
+\newcommand{\units}[1]{\text{#1}}
+\newcommand{\K}{\text{K}}
+\newcommand{\Na}{\text{Na}}
+\newcommand{\Cl}{\text{Cl}}
+\newcommand{\Leak}{\text{leak}}
+\newcommand{\water}{\text{H}_2\text{O}}
+\newcommand{\tderiv}[1]{\frac{\mathrm{d}#1}{\mathrm{d}t}}
+%-----------------------------------------------------------------
+
+
+\begin{document}
+
+\parbox{2cm}{
+\includegraphics[width=1.8cm]{../bccnlogo.pdf}
+}
+\parbox{11cm}{
+\begin{center}
+\large HUMBOLDT-UNIVERSIT"AT \hskip 0.1 cm ZU \hskip 0.1 cm BERLIN
+\vskip 0.1 true cm
+\mgross BERNSTEIN CENTER FOR\\ COMPUTATIONAL NEUROSCIENCE
+\end{center}
+}
+\parbox{2cm}
+{
+\hfill
+\includegraphics[width=1.8cm]{../hublogo.pdf}
+}
+
+\vskip 0.6 true cm
+
+\leftline{\CAP Humboldt-Universit"at zu Berlin 
+\hfill Phone: 030/2093-9110}
+\leftline{\CAP Philippstr. 13 House 6
+             \hfill Fax: 030/2093-6771}
+\leftline{\CAP \hfill webpage: http://www.bccn-berlin.de/}
+
+
+\vskip 0.8 true cm
+\centerline{\bf Models of Neural Systems, WS 2010/11}
+\centerline{\bf Project 1: Synfire chains}
+\centerline{Project presentation and report submission: February,
+15th, 2011}
+
+\vskip 0.8 true cm
+{\bf Background}
+\vskip 0.8 true cm
+
+ A popular view in neuroscience is that the information in
+ the neural systems is encoded by the number of spikes (firing rate).
+ Alternatively, the information could be encoded in the precise timing
+ of spikes, which would substantially increase the information capacity.
+ For example, information could be processed in so-called synfire
+ chains -- feedforward networks of synchronously active
+ neural subpopulations. However, it has been argued that the
+ background noise present in cortex would destroy all such
+ temporal information. Here, you will test this hypothesis by checking if precise
+ spike packets can reliably and stably propagate in model feedforward
+ networks.
+
+\vskip 0.8 true cm
+
+{\bf Problems}
+
+\begin{enumerate}
+    \item \textit{Literature review.} Study the paper of Diesmann, Gewaltig,
+        Aertsen, Nature 1999. Focus on the figures and the method
+        section. What is the hypothesis? What are the main results
+        and conclusions? What are the main assumptions of the model?
+        What are the strengths and weaknesses of the paper?
+
+    \item Implement the leaky integrate-and-fire model discussed in
+        the computer practical (see exercise sheet 6) with the parameters given
+        in Diesmann et al. (1999). Additionally, introduce the absolute
+        refractory period during which the neuron does not respond to
+        the incoming inputs. If required, add a relative refractory
+        period as described in the paper.
+
+
+    \item Model the background activity by injecting a random synaptic
+        current whose values are normally distributed. Choose the mean
+        and standard deviation of the current such that the neuron is
+        spontaneously active with mean firing rate of 2 Hz and fires
+        irregularly.
+
+    \item The feed-forward inputs are entering the neuron model by
+        means of conductance-based synapses, as discussed in computer
+        practical exercise sheet 6. Choose the parameters of the alpha
+        function such that the post-synaptic potential of one spike has
+        the peak amplitude of 0.14 mV and time-to-peak of 1.7 ms.
+
+    \item Model the feed-forward inputs with packets of spikes, which
+        are simulated by repeatedly drawing $a_\mathrm{in}$ spike times
+        from Gaussian density with standard deviation
+        $\sigma_\mathrm{in}$ and mean 0.
+
+    \item Simulate the response of the neuron. It should respond with at
+        most one spike to the pulse packet (adjust the refractory
+        periods and the membrane time constant if it does not). Repeat the
+        simulation multiple times and calculate the distribution of
+        the output spikes. Plot and compare the input and output
+        distribution.  Calculate the number of spikes $a_\mathrm{out}$ and
+        standard deviation $\sigma_\mathrm{out}$ of the output spike times.
+        Is the packet's propagation stable or unstable?
+
+    \item Simulate the propagation of the pulse packet in a fully
+        connected synfire chain (10 successive groups, 100 neurons
+        each). Plot the raster plots (see Diesmann et al. 1999, Figure
+        1).
+
+    \item \textit{Phase-space analysis}. Calculate $a_\mathrm{out}$
+        and $\sigma_\mathrm{out}$ for different pairs of
+        $a_\mathrm{in}$ and  $\sigma_\mathrm{in}$. Plot the results as
+        a vector field. Can you reproduce the results of Diesmann et
+        al. 1999 (Figure 3)? If not, describe and explain the
+        differences.
+
+\end{enumerate}
+
+\vskip 0.8 true cm
+{\bf Literature} 
+\vskip 0.8 true cm
+
+M.~Diesmann, Marc-Oliver~Gewaltig and Ad~Aertsen (1999). Stable propagation of
+synchronous spiking in cortical neural networks.
+\emph{Nature} 402(2):529-532.\newline
+
+\vfill
+\centerline{\CAP Contact}
+\CAP
+
+\begin{tabular}{lll}
+\underline{Urs Bergmann} & Phone: 2093-8924 & Email:
+urs.bergmann(at)biologie.hu-berlin.de \\
+Matthias Guggenmos & & Email: matthias.guggenmos(at)bccn-berlin.de \\
+Richard Kempter \hfill & Phone: 2093-8925 \hfill & Email:
+r.kempter(at)biologie.hu-berlin.de \\
+\end{tabular}
+
+\end{document}
