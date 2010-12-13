@@ -1,0 +1,177 @@
+\documentclass[12pt]{article}
+
+\usepackage{amsmath}
+\usepackage{german}
+\usepackage{graphicx}
+\DeclareMathOperator\sgn{sgn}
+
+%\graphicspath{{/home/ritz/Teaching/fcn/fig/}}
+
+%----------------- layout ----------------------------------------
+
+\oddsidemargin=0in
+\textwidth=6in
+\topmargin=-0.7in
+\textheight=9.5in
+\baselineskip=16pt
+\font\mittel=cmr17
+\font\roman=cmr12
+\font\klein=cmr9
+\font\mgross=cmr10
+\newfont{\CAP}{cmcsc10 scaled 900}
+\pagestyle{empty}
+\parindent=0mm
+
+%----------------- macros ----------------------------------------
+\newcommand{\conc}[1]{[{\rm C}]_{\text{#1}}}
+\newcommand{\units}[1]{\text{#1}}
+\newcommand{\K}{\text{K}}
+\newcommand{\Na}{\text{Na}}
+\newcommand{\Cl}{\text{Cl}}
+\newcommand{\Leak}{\text{leak}}
+\newcommand{\water}{\text{H}_2\text{O}}
+\newcommand{\tderiv}[1]{\frac{\mathrm{d}#1}{\mathrm{d}t}}
+%-----------------------------------------------------------------
+
+
+\begin{document}
+
+\parbox{2cm}{
+\includegraphics[width=1.8cm]{bccnlogo.pdf}
+}
+\parbox{11cm}{
+\begin{center}
+\large HUMBOLDT-UNIVERSIT"AT \hskip 0.1 cm ZU \hskip 0.1 cm BERLIN
+\vskip 0.1 true cm
+\mgross BERNSTEIN CENTER FOR\\ COMPUTATIONAL NEUROSCIENCE
+\end{center}
+}
+\parbox{2cm}
+{
+\hfill
+\includegraphics[width=1.8cm]{hublogo.pdf}
+}
+
+\vskip 0.6 true cm
+
+\leftline{\CAP Humboldt-Universit"at zu Berlin 
+\hfill Phone: 030/2093-9110}
+\leftline{\CAP Philippstr. 13 House 6
+              \hfill Fax: 030/2093-6771}
+\leftline{\CAP \hfill webpage: http://www.bccn-berlin.de/}
+
+
+\vskip 0.8 true cm
+\centerline{\bf Models of Neural Systems, WS 2009/10}
+\centerline{\bf Project 6: Temporal Pattern Learning}
+\centerline{Project presentation and report submission: February, 8th, 2010}
+
+\vskip 0.8 true cm
+
+{\bf Background}
+
+The tempotron, in analogy the perceptron, is a neuron that is able to
+distinguish between different temporal input patterns. It should
+respond with an action potential for some input patterns, but not for
+others. Importantly, for all input patterns, the tempotron can receive
+input from the same cells, but only the relative timing of these inputs is
+different for different input patterns. Read the original paper
+(G\"utig and Sompolinsky, 2006) to understand the details on the
+tempotron algorithm.
+
+\vskip 0.8 true cm
+
+{\bf The model neuron and its inputs} 
+
+The tempotron is a leaky integrate-and-fire neuron that receives input
+from $n$ cells. An input spike evokes a postsynaptic potential in the
+membrane potential of the tempotron. The summed postsynaptic
+potentials of all inputs define the membrane potential of the
+tempotron: $$V(t)=\sum_i \omega_i \sum_{t_i}\kappa (t - t_i) +
+V_{rest}$$ with $t_i$ being the spike time of the $i$th input cell and
+$\kappa (t - t_i)$ being the normalized postsynaptic potential evoked
+by an input spike (for $t-t_i \ge0$, otherwise $\kappa =0$): $$\kappa (t -
+t_i)=V_0(e^{-(t-t_i)/\tau}-e^{-(t-t_i)/\tau_s})$$
+
+$V_0$ is a normalization constant, so that the amplitude is given by
+$\omega_i$. $\tau$ and $\tau_s$ are time constants for the membrane
+and synaptic currents, respectively. They determinine the decay and
+rise time of the postsynaptic potentials. For $\tau/\tau_s = 4$, $V_0$
+equals $2.12$.
+
+\begin{enumerate}
+   \item Implement a basic version of the tempotron. Start with very
+   few input cells with different synaptic strengths $\omega_i$. Check
+   a few voltage traces to ensure that your implementation is correct.
+   \item Generate a set of random input patterns. Each pattern occurs
+   within a time window of 500~ms. Each input cell fires only once
+   per input pattern. The time of the input spike for each input cell
+   is uniformly-distributed within the 500~ms window.
+   \item Vary the synaptic weights and the number of input cells.
+\end{enumerate}    
+
+{\bf Tempotron learning} 
+
+So far, the response of the tempotron does not change because the
+synaptic weights are fixed. Now, we want to use a rule that modifies
+the synaptic weights when a temporal pattern is presented. The goal is
+that the tempotron produces an output spike for some patterns (`+'
+patterns) but not for others (`-' patterns). To determine whether an
+output spike is produced, we simply check whether the membrane
+potential $V(t)$ exceeds a certain threshold for a given pattern.
+Intuitively, the synaptic weights should be increased if we want our
+tempotron to fire an action potential for a certain pattern.
+Conversely, the synaptic weights should be decreased if we do not want
+to fire a spike for a certain pattern. However, as the input patterns
+mainly differ in the timing of the input, we need a sophisticated
+learning rule. The tempotron learning rule is:
+  $$ \Delta\omega_i = \lambda \sum_{t_i<t_{max}} \kappa
+  (t_{max}-t_i)$$ where $\lambda>0$ is a learning rate and $t_{max}$
+  is the time when $V(t)$ is maximal. Weights are only changed for
+  incorrect responses of the tempotron. Weights are increased by
+  $\Delta\omega_i$ if no spike was elicited (although there should have
+  been one). Weights are decreased by $\Delta\omega_i$ if a spike was
+  elicited (although there should have been none).
+
+\begin{enumerate}
+  \item Train your tempotron on two patterns (one `+' and one `-'
+  pattern). Compare the synaptic weights before and after learning.
+  Switch the identities of the `+' and `-' pattern and learn again.
+  
+  \item Generate a larger training set and reproduce some results of
+  G\"utig and Sompolinsky (2006).
+
+  \item Change some aspects of the learning paradigm (e.g.~the
+  temporal structure of the input patterns, the shape of postsynaptic
+  potentials, the learning parameters,...) and examine the effect on
+  learning performance.
+
+  \item For what types of learning could the tempotron learning rule
+  be used by the brain? Try to illustrate your idea(s) with
+  simulations using the tempotron. Are there problems or weaknesses of
+  the algorithm that need to be addressed by the brain?
+
+\end{enumerate}
+\textit{Create labeled figures for all your main findings
+    and summarize your results.}
+
+\vskip 0.2 true cm
+{\bf Literature} 
+
+\noindent R.~G\"utig and H.~Sompolinsky (2006). The tempotron: a neuron that
+learns spike timing-based decisions. \emph{Nat Neurosci} 9(3):420-8.
+
+
+
+\vfill
+\centerline{\CAP Contact} \CAP
+
+Richard Kempter \hfill Phone: 2093-8925 \hfill
+Email: r.kempter(at)biologie.hu-berlin.de \\
+Robert Schmidt \hfill Phone: 2093-8926 \hfill
+Email: r.schmidt@biologie.hu-berlin.de \\
+Bartosz Telenczuk \hfill Phone: 2093-8838 \hfill
+Email: b.telenczuk@biologie.hu-berlin.de \\
+
+\end{document}
+ 
