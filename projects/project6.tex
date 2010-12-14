@@ -1,0 +1,146 @@
+\documentclass[12pt]{article}
+
+\usepackage{amsmath}
+\usepackage{german}
+\usepackage{graphicx}
+\DeclareMathOperator\sgn{sgn}
+
+%\graphicspath{{/home/ritz/Teaching/fcn/fig/}}
+
+%----------------- layout ----------------------------------------
+
+\oddsidemargin=0in
+\textwidth=6in
+\topmargin=-0.7in
+\textheight=9.5in
+\baselineskip=16pt
+\font\mittel=cmr17
+\font\roman=cmr12
+\font\klein=cmr9
+\font\mgross=cmr10
+\newfont{\CAP}{cmcsc10 scaled 900}
+\pagestyle{empty}
+\parindent=0mm
+
+%----------------- macros ----------------------------------------
+\newcommand{\conc}[1]{[{\rm C}]_{\text{#1}}}
+\newcommand{\units}[1]{\text{#1}}
+\newcommand{\K}{\text{K}}
+\newcommand{\Na}{\text{Na}}
+\newcommand{\Cl}{\text{Cl}}
+\newcommand{\Leak}{\text{leak}}
+\newcommand{\water}{\text{H}_2\text{O}}
+\newcommand{\tderiv}[1]{\frac{\mathrm{d}#1}{\mathrm{d}t}}
+%-----------------------------------------------------------------
+
+
+\begin{document}
+
+\parbox{2cm}{
+\includegraphics[width=1.8cm]{bccnlogo.pdf}
+}
+\parbox{11cm}{
+\begin{center}
+\large HUMBOLDT-UNIVERSIT"AT \hskip 0.1 cm ZU \hskip 0.1 cm BERLIN
+\vskip 0.1 true cm
+\mgross BERNSTEIN CENTER FOR\\ COMPUTATIONAL NEUROSCIENCE
+\end{center}
+}
+\parbox{2cm}
+{
+\hfill
+\includegraphics[width=1.8cm]{hublogo.pdf}
+}
+
+\vskip 0.6 true cm
+
+\leftline{\CAP Humboldt-Universit"at zu Berlin 
+\hfill Phone: 030/2093-9110}
+\leftline{\CAP Philippstr. 13 House 6
+              \hfill Fax: 030/2093-6771}
+\leftline{\CAP \hfill webpage: http://www.bccn-berlin.de/}
+
+
+\vskip 0.8 true cm
+\centerline{\bf Models of Neural Systems, WS 2010/11}
+\centerline{\bf Project 6: Complex cells tuned to disparity}
+\centerline{Project presentation and report submission: February, 15th, 2011}
+
+\vskip 0.8 true cm
+
+\noindent {\bf Background}
+
+The visual cortex contains cells sensitive to binocular disparity i.e.
+difference in image location of an object seen by the left and right
+eye, resulting from the eyes' horizontal separation. The brain uses
+binocular disparity to extract the depth information for stereotopic
+vision. In the project, you will model receptive fields of such cells
+and analyse their responses to gratings and natural images.
+
+
+\vskip 0.8 true cm
+\noindent {\bf Problems}
+
+
+\begin{enumerate}
+    \item \label{simplecell} Construct a model simple cell that sums inputs from both
+        eyes. The receptive field of each eye is described by a  Gabor
+        wavelet:
+        $$\rho(x,y)=\cos(f x' -
+        \phi)\exp\left(-\frac{x'^2+y'^2}{2\sigma^2}\right),$$
+        where $x'=x \cos\theta+y\sin\theta$;
+        $y'=y\cos\theta-x\sin\theta$, $f$ is the cell's preferred
+        spatial frequency, $\theta$ is its preferred orientation,
+        $\phi$ is its phase and $\sigma$ describes the size of the receptive
+        field.
+    \item Calculate the response of a simple cell to gratings:
+        $$I_{L,R}(x,y)=\cos(Kx+\Phi_{L,R}),$$
+        where $I_L$ and $I_R$ are the inputs to the left and right
+        eyes respectively; $\Phi_L$, $\Phi_R$ are phase shifts of the
+        gratings and $K$ is the spatial frequency. Take
+        $\Phi_L=\Phi_R=\Phi$, $f=K=2$, $\sigma=1$.  Plot the tuning curve
+        as a function of $\Phi$.
+    \item Construct a complex cell that sums squares of responses of
+        two simple cells: $L_C =
+        L_1^2+L_2^2$. The receptive fields of both simple cells should
+        be similar but differ in the phase (for example $\phi_1=0$,
+        $\phi_2=\pi/2$).
+    \item Show that the complex cell is tuned to disparity in the
+        images, $\Phi_L-\Phi_R$, but is independent of the absolute
+        spatial phase of the grating, $\Phi_L+\Phi_R$. Plot the
+        response tuning curve as a function of disparity. 
+    \item Use the above model, estimate the disparity maps in natural
+        stereoscopic images. A stereoscopic image is a pair of two images of the same scene, taken from slightly different angles. To this end, calculate the responses of
+        complex cells with receptive fields  centered  at each pixel of the image 
+        (\textit{Hint:} you can use spatial convolution). Plot obtained disparity
+        maps for different preferred frequencies $f$ and preferred
+        orientations $\theta$. You can download some stereoscopic
+        images from
+
+	\texttt{http://vision.middlebury.edu/stereo/}
+        
+\end{enumerate}
+
+\begin{thebibliography}{7}
+    \bibitem{dayan2001} P Dayan, LF Abbott, ``Theoretical neuroscience'',
+        MIT Press 2001
+    \bibitem{deAngelis1991} GC DeAngelis, I Ohzawa, RD Freeman,
+        ``Depth is encoded in the visual cortex by a specialized
+        receptive field structure'', Nature 352: 156-159 (1991)
+\end{thebibliography}
+
+\vfill
+\centerline{\CAP Contact}
+\CAP
+
+\begin{tabular}{lll}
+\underline{Matthias Guggenmos} & Phone: 450-517131 & Email: matthias.guggenmos(at)bccn-berlin.de \\
+Urs Bergmann & Phone: 2093-8924 & Email: urs.bergmann(at)biologie.hu-berlin.de \\
+Bartosz Telenczuk & Phone: 2093-8838 & Email: b.telenczuk(at)biologie.hu-berlin.de \\
+Richard Kempter & Phone: 2093-8925 & Email: r.kempter(at)biologie.hu-berlin.de \\
+\end{tabular}
+\end{document}
+
+
+\end{document}
+ 

@@ -1,0 +1,132 @@
+\documentclass[12pt]{article}
+
+\usepackage{amsmath}
+\usepackage{german}
+\usepackage{graphicx}
+\DeclareMathOperator\sgn{sgn}
+
+%\graphicspath{{/home/ritz/Teaching/fcn/fig/}}
+
+%----------------- layout ----------------------------------------
+
+\oddsidemargin=0in
+\textwidth=6in
+\topmargin=-0.7in
+\textheight=9.5in
+\baselineskip=16pt
+\font\mittel=cmr17
+\font\roman=cmr12
+\font\klein=cmr9
+\font\mgross=cmr10
+\newfont{\CAP}{cmcsc10 scaled 900}
+\pagestyle{empty}
+\parindent=0mm
+
+%----------------- macros ----------------------------------------
+\newcommand{\conc}[1]{[{\rm C}]_{\text{#1}}}
+\newcommand{\units}[1]{\text{#1}}
+\newcommand{\K}{\text{K}}
+\newcommand{\Na}{\text{Na}}
+\newcommand{\Cl}{\text{Cl}}
+\newcommand{\Leak}{\text{leak}}
+\newcommand{\water}{\text{H}_2\text{O}}
+\newcommand{\tderiv}[1]{\frac{\mathrm{d}#1}{\mathrm{d}t}}
+%-----------------------------------------------------------------
+
+
+\begin{document}
+
+\parbox{2cm}{
+\includegraphics[width=1.8cm]{bccnlogo.pdf}
+}
+\parbox{11cm}{
+\begin{center}
+\large HUMBOLDT-UNIVERSIT"AT \hskip 0.1 cm ZU \hskip 0.1 cm BERLIN
+\vskip 0.1 true cm
+\mgross BERNSTEIN CENTER FOR\\ COMPUTATIONAL NEUROSCIENCE
+\end{center}
+}
+\parbox{2cm}
+{
+\hfill
+\includegraphics[width=1.8cm]{hublogo.pdf}
+}
+
+\vskip 0.6 true cm
+
+\leftline{\CAP Humboldt-Universit"at zu Berlin 
+\hfill Phone: 030/2093-9110}
+\leftline{\CAP Philippstr. 13 House 6
+              \hfill Fax: 030/2093-6771}
+\leftline{\CAP \hfill webpage: http://www.bccn-berlin.de/}
+
+
+\vskip 0.8 true cm
+\centerline{\bf Models of Neural Systems, WS 2010/11}
+\centerline{\bf Project 5: Stochastic ion channels}
+\centerline{Project presentation and report submission: February, 15th, 2011}
+
+\vskip 0.8 true cm
+\noindent {\bf Background}
+
+The Hodgkin-Huxley formalism accurately describes voltage-dependent
+conductances of a large number of channels. However, in order to
+simulate single channels, we need a model of their different conformational
+states and transitions between them. In this project you will
+implement a simple model of multi-state ion channels, simulate them
+using a Monte-Carlo method, and compare them with conductance equations
+proposed by Hodgkin and Huxley.
+
+\vskip 0.8 true cm
+
+{\bf Problems}
+
+
+\begin{enumerate}
+    \item Implement a single delayed-rectifier $\K^+$ channel according to
+       the Figure 5.12 in Dayan and Abbott \cite{dayan2001}. Compare
+       the obtained channel current to the prediction of Hodgkin-Huxley
+       model. Increase the number of channels and see how the
+       correspondence between both models changes. Plot the mean
+       squared deviation between the current produced by model
+       channels and the Hodgkin-Huxley current as a function of N
+       over the range 1 $<$ N $<$ 100, matching the amplitude of the
+       Hodgkin-Huxley model so that the mean currents are the same.
+   \item  Implement the $\Na^+$ channel model from Figure 5.13 of Dayan
+       and Abbott \cite{dayan2001}. Compare such a channel model and
+       the Hodgkin-Huxley prediction for different numbers of channels.
+       Can you see any differences between them? Where do they come
+       from?
+    \item Simulate the Hodgkin-Huxley neuron model with stochastic
+        channels. Plot the distribution of interspike intervals for
+        constant current injection. Check how the distribution changes
+        with an increasing number of channels. For computational
+        efficiency consider implementing improved simulation
+        methods (see for example \cite{white2000,chow1996}).
+   
+   \end{enumerate}
+\vspace{1cm}
+
+\begin{thebibliography}{7}
+    \bibitem{dayan2001} P Dayan, LF Abbott, ``Theoretical neuroscience'',
+        MIT Press 2001
+    \bibitem{white2000} JA White, JT Rubinstein, AR Kay, ``Channel
+        noise in neurons'', Trends Neurosci. 23: 131-137 (2000)
+    \bibitem{chow1996} CC Chow, JA White, ``Spontaneous action
+      potentials due to channel fluctuations'', Biophysical Journal
+      71: 3013-3021 (1996)
+\end{thebibliography}
+
+\vfill
+\centerline{\CAP Contact}
+\CAP
+
+\begin{tabular}{lll}
+\underline{Matthias Guggenmos} & Phone: 450-517131 & Email: matthias.guggenmos(at)bccn-berlin.de \\
+Urs Bergmann & Phone: 2093-8924 & Email: urs.bergmann(at)biologie.hu-berlin.de \\
+Bartosz Telenczuk & Phone: 2093-8838 & Email: b.telenczuk(at)biologie.hu-berlin.de \\
+Richard Kempter & Phone: 2093-8925 & Email: r.kempter(at)biologie.hu-berlin.de \\
+\end{tabular}
+\end{document}
+
+ 

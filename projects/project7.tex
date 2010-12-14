@@ -1,0 +1,186 @@
+\documentclass[12pt]{article}
+
+\usepackage{amsmath}
+\usepackage{german}
+\usepackage{graphicx}
+\DeclareMathOperator\sgn{sgn}
+
+%\graphicspath{{/home/ritz/Teaching/fcn/fig/}}
+
+%----------------- layout ----------------------------------------
+
+\oddsidemargin=0in
+\textwidth=6in
+\topmargin=-0.7in
+\textheight=9.5in
+\baselineskip=16pt
+\font\mittel=cmr17
+\font\roman=cmr12
+\font\klein=cmr9
+\font\mgross=cmr10
+\newfont{\CAP}{cmcsc10 scaled 900}
+\pagestyle{empty}
+\parindent=0mm
+
+%----------------- macros ----------------------------------------
+\newcommand{\conc}[1]{[{\rm C}]_{\text{#1}}}
+\newcommand{\units}[1]{\text{#1}}
+\newcommand{\K}{\text{K}}
+\newcommand{\Na}{\text{Na}}
+\newcommand{\Cl}{\text{Cl}}
+\newcommand{\Leak}{\text{leak}}
+\newcommand{\water}{\text{H}_2\text{O}}
+\newcommand{\tderiv}[1]{\frac{\mathrm{d}#1}{\mathrm{d}t}}
+%-----------------------------------------------------------------
+
+
+\begin{document}
+
+\parbox{2cm}{
+\includegraphics[width=1.8cm]{bccnlogo.pdf}
+}
+\parbox{11cm}{
+\begin{center}
+\large HUMBOLDT-UNIVERSIT"AT \hskip 0.1 cm ZU \hskip 0.1 cm BERLIN
+\vskip 0.1 true cm
+\mgross BERNSTEIN CENTER FOR\\ COMPUTATIONAL NEUROSCIENCE
+\end{center}
+}
+\parbox{2cm}
+{
+\hfill
+\includegraphics[width=1.8cm]{hublogo.pdf}
+}
+
+\vskip 0.6 true cm
+
+\leftline{\CAP Humboldt-Universit"at zu Berlin 
+\hfill Phone: 030/2093-9110}
+\leftline{\CAP Philippstr. 13 House 6
+              \hfill Fax: 030/2093-6771}
+\leftline{\CAP \hfill webpage: http://www.bccn-berlin.de/}
+
+
+\vskip 0.6 true cm
+\centerline{\bf Models of Neural Systems, WS 2010/11}
+\centerline{\bf Project 7: FitzHugh-Nagumo model}
+\centerline{Project presentation and report submission: February, 15th, 2011}
+
+\vskip 0.8 true cm
+
+\noindent {\bf Background}
+
+Many features of dynamical systems can be understood by geometrical
+analysis of the underlaying equations. This method is called phase
+space analysis. Here we will considere a simplified two-dimensional
+system of spike generation proposed by Richard FitzHugh:
+
+\begin{eqnarray} 
+\dot{V} & = & V-V^3/3 - W + I \\ 
+\dot{W} & = & 0.08(V+0.7 - 0.8W)
+\end{eqnarray} 
+
+\vskip 0.2 true cm
+
+{\bf Problems}
+
+
+\begin{enumerate}
+    \item \textbf{Phase space}
+        \begin{itemize}
+        \item Plot the vector flow field of the FitzHugh-Nagumo system on
+            a grid $V=$-2.5 -- 2.5, $W=$-1.25 -- 1.25. Take $I=0$.
+            \textit{Hint}: You can generate a 2D grid of points with
+            \texttt{pylab.meshgrid} function; a field of arrows can be
+            plotted in Pylab with \texttt{pylab.quiver} (check
+            documentation for arguments).  
+        \item Draw the $W$, $V$ nullclines on the same plot. What does
+            the vector field look like near the nullclines and their
+            intersection? 
+        \item \textit{Stable points}. Starting at different initial
+            conditions show that all trajectories go to the same
+            point. Which point is it? Which initial conditions lead to
+            the generation of an action potential? Can you find the
+            potential ($V$) threshold above which spikes are reliably
+            produced? \textit{Hint}: You can read out the coordinates
+            of your mouse cursor in the lower-right corner of the plot.
+        \item \textit{Limit cycle}. Increase external current to
+                $I=1$ and plot several trajectories with chosen initial conditions. What has happened?
+        \item \textit{Excitation block}. The FitzHugh-Nagumo model
+            explains the excitation block phenomenon, i.e., the
+            cessation of repetitive spiking as the amplitude of the
+            stimulus current increases. Plot sample trajectories for
+            $I=2$ and compare them with trajectories from the previous
+            exercise. How can you explain the excitation block phenomenon?
+        \item \textit{Post-inhibitory spikes}. In Hodgkin-Huxley and
+            Fitzhugh-Nagumo release from inhibition can also lead to a
+            spike, called post-inhibitory spike. In order to simulate
+            this phenomenon find (numerically or geometrically) the
+            stable fixed point for inhibitory input ($I$=-0.5). Next,
+            use the values as a (forced) initial condition in a model
+            without external current ($I$=0) and show that it leads to
+            generation of an action potential.
+
+       \end{itemize}
+   \item \textbf{Bifurcation diagram}
+
+       In this exercise you will plot bifurcation diagram of
+       FitzHugh-Nagumo model, which summarizes its solutions as the
+       bifurcation parameter (external current, $I$) is varied.
+       \begin{itemize}
+    \item \textit{Fixed points} Find fixed points of Fitzugh-Nagumo
+        model as a function of $I$ by numerically
+        solving the equation $V^3/3-V+(V+0.7)/0.8-I=0$. Take
+        $I=$-0.5--2.5. Plot the value of the membrane potential ($V$)
+        at the fixed point as a function of $I$.
+        \textit{Hint:} Use \texttt{scipy.optimize.newton(func, x0)}
+        which finds zeros of a function defined by \texttt{func}. Take
+        \texttt{x0 = 1}.
+    \item \textit{Stability}. Determine stability of the fixed points
+        numerically. Simulate the model with an initial condition
+        very close to the fixed point (but not in the fixed point) and
+        check if the trajectory stays in its proximity (stable point)
+        or diverges (unstable point). Repeat the procedure for each
+        fixed point. Plot the stable points with a solid line and
+        unstable points with a dashed line.
+    \item \textit{Stable limit cycles}. Determine the position of
+        stable limit cycles. Start the integration from the initial
+        condition $(V(0), W(0))=(-10,10)$. Plot the minimum and
+        maximum of the trajectory as a function of $I$.  
+    
+    \item \textit{Unstable limit cycles}. Determine the
+        position of unstable limit cycles by repeating the last step
+        but with integration time reversed ($t\rightarrow-t$). Use the
+        initial condition $(V(0), W(0))=(1.,1.)$.
+    
+    \item Show all of the results on a bifurcation diagram.  
+
+    \item Check what happens at the bifurcation point by narrowing the
+        bifurcation parameter range (e.g. $I=0.32-0.34$). What
+        type of bifurcation is it?
+    \end{itemize}
+\end{enumerate}
+
+\begin{thebibliography}{7}
+    \bibitem{dayan2001} P Dayan, LF Abbott, ``Theoretical neuroscience'',
+        MIT Press 2001
+    \bibitem{white2000} JA White, JT Rubinstein, AR Kay, ``Channel
+        noise in neurons'', Trends Neurosci. 23: 131-137 (2000)
+    \bibitem{chow1996} CC Chow, JA White, ``Spontaneous action
+      potentials due to channel fluctuations'', Biophysical Journal
+      71: 3013-3021 (1996)
+\end{thebibliography}
+
+\vfill
+\centerline{\CAP Contact}
+\CAP
+
+\begin{tabular}{lll}
+\underline{Matthias Guggenmos} & Phone: 450-517131 & Email: matthias.guggenmos(at)bccn-berlin.de \\
+Urs Bergmann & Phone: 2093-8924 & Email: urs.bergmann(at)biologie.hu-berlin.de \\
+Bartosz Telenczuk & Phone: 2093-8838 & Email: b.telenczuk(at)biologie.hu-berlin.de \\
+Richard Kempter & Phone: 2093-8925 & Email: r.kempter(at)biologie.hu-berlin.de \\
+\end{tabular}
+\end{document}
+
+ 
