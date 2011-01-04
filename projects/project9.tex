@@ -75,7 +75,7 @@
 {\bf Background}
 
 The tempotron, in analogy the perceptron, is a neuron that is able to
-distinguish between different temporal input patterns. It should
+distinguish between temporal input patterns. It should
 respond with an action potential for some input patterns, but not for
 others. Importantly, for all input patterns, the tempotron can receive
 input from the same cells, but only the relative timing of these inputs is
@@ -128,7 +128,7 @@ tempotron to fire an action potential for a certain pattern.
 Conversely, the synaptic weights should be decreased if we do not want
 to fire a spike for a certain pattern. However, as the input patterns
 mainly differ in the timing of the input, we need a sophisticated
-learning rule. The tempotron learning rule is:
+learning rule. The tempotron learning rule is
   $$ \Delta\omega_i = \lambda \sum_{t_i<t_{max}} \kappa
   (t_{max}-t_i)$$ where $\lambda>0$ is a learning rate and $t_{max}$
   is the time when $V(t)$ is maximal. Weights are only changed for
@@ -160,8 +160,8 @@ learning rule. The tempotron learning rule is:
         learns spike timing-based decisions.} Nature Neuroscience}
         9(3):420--8, 2006
     \bibitem[G\"utig and Sompolinsky(2009)]{Guetig09} 
-        R. G\"utig and H. Sompolinsky, \emph{Time-Warp-Invariant Neuronal
-        Processing}. PLoS Biology 7(7): e1000141, 2009
+        R. G\"utig and H. Sompolinsky, \emph{Time-warp-invariant neuronal
+        processing}. PLoS Biology 7(7): e1000141, 2009
 \end{thebibliography}
 
 

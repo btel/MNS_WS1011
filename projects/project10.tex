@@ -71,13 +71,22 @@
 
 \vskip 0.8 true cm
 
+Synapses are dynamic entities whose state is modulated by their
+activity or action of various neuromodulators. The modification
+synaptic connection strength, called synaptic plasticity, may
+underlies phenomena such as learning, memory or gain modulation. In
+this project you will investigate short-term synaptic plasticity that
+reflects adaptation of synaptic strength to pre-synaptic activity 
+occurring within short time intervals ($\sim$~100~ms).
+
 \begin{enumerate}
     \item \textbf{Tsodyks-Markram model of short-term synaptic
         depression}        
 
         \begin{enumerate}
-            \item Implement the model of short-term synaptic
-                depression by \citet{Tsodyks97}.
+            \item Implement the leaky integrate-and-fire neuron model
+                which receives inputs via syanpses with short-term synaptic
+                depression \citep{Tsodyks97}.
             \item Using short spike trains with appropriately-chosen inter-spike
                 intervals show the effects of depression and recovery.
             \item Demonstrate how depression and recovery depend on
@@ -106,17 +115,17 @@
             \item Simulate the responses of the neuron to inputs with
             constant firing rates and fast transients.
         \item Investigate in which parameter regimes the synapse
-            transmits information about either mean firing or  the
+            transmits information about either mean firing rate or  the
             transients.
         \end{enumerate}
 
     \item \textbf{Gain modulation}
 
-        This part of the project may be solved in one of simulator of
+        This part of the project may be solved by means of a simulator of
         spiking neural networks (PyNN or Brian).
 
 The goal of this part is to show that synaptic depression may
-underline multiplication of neuronal signals \citep{Rothman09}.
+underlie multiplication of neuronal signals \citep{Rothman09}.
 
 \begin{enumerate}
 \item Simulate a leaky integrate-and-fire neuron with inhibitory and
@@ -138,7 +147,7 @@ underline multiplication of neuronal signals \citep{Rothman09}.
 
 \begin{thebibliography}{9}
 
-    \bibitem[Tsodyks and Markram (1997)]{Tsodyks97}
+    \bibitem[Tsodyks and Markram~(1997)]{Tsodyks97}
       M. Tsodyks and H. Markram. \emph{The neural code between neocortical
       pyramidal neurons depends on neurotransmitter release
       probability.} Proceedings of the National Academy of Sciences
