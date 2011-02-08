@@ -1,8 +1,8 @@
 \documentclass[12pt]{article}
 
 \usepackage{amsmath}
-%\usepackage{english}
-\usepackage{url}
+% \usepackage{german}
+% \usepackage{url}
 % \usepackage[dvips]{epsfig}
 \usepackage{graphicx}
 
@@ -32,6 +32,9 @@
 \newcommand{\wasser}{$\text{H}_2\text{O}$}
 %-----------------------------------------------------------------
 
+\newcommand{\Na}{\mathrm{Na}}
+\newcommand{\K}{\mathrm{K}}
+\newcommand{\Leak}{\mathrm{L}}
 
 \begin{document}
 
@@ -62,82 +65,81 @@
 
 \vskip 0.8 true cm
 \centerline{\bf Models of Neural Systems, WS 2010/11}
-\centerline{\bf Project 4: Action potential propagation}
+\centerline{\bf Project 4: Action potential propagation} 
 \centerline{Project presentation and report submission: February,
 15th, 2011}
 
 \vskip 0.8 true cm
 
-\newcommand{\Na}{\mathrm{Na}}
-\newcommand{\K}{\mathrm{K}}
-\newcommand{\Leak}{\mathrm{L}}
-
-\vskip 0.8 true cm
+\noindent{\bf Background}
 
 \noindent The aim of this project is to model the propagation of an action
 potential along an axon. The relationship between the membrane current
-$i_m$ and the voltage along an axon is given by the equation:
+$i_m$ and the voltage $V$ along an axon is given by the equation
 
 \begin{equation}
     c_m\frac{\partial V}{\partial t} =
     \frac{1}{2ar_L}\frac{\partial}{\partial
     x}\left(a^2\frac{\partial V}{\partial x}\right)-i_m+i_e,
+    \label{eq:Cable}
 \end{equation}
-where $a$ is the radius of the axon, $r_L$ is intracellular
-resistivity.
+where $a$ is the radius of the axon, $r_L$ is the intracellular
+resistivity and $c_m$ the membrane capacitance.
 
-The ionic current flowing through a patch of axonal membrane $i_m$ is
-well-described by Hodgkin-Huxley model:
+The ionic current $i_m$ flowing through a patch of axonal membrane is
+well-described by the Hodgkin-Huxley model:
 
 \begin{equation}
     i_m=g_\Na m^3h(V-E_\Na)+g_\K n^4(V-E_\K)+g_\Leak(V-E_\Leak),
 \end{equation}
-where $m$, $n$, $h$ are Hodgkin-Huxley-type activation variables.
+where $m$, $n$, $h$ are Hodgkin-Huxley-type gating variables.
 
-Combining these two equations leads to a partial differential equation
-which can be computed numerically by a multi-compartmental approximation.
-In a nonbranching cable, each compartment is coupled to two neighbours
-and the equations for the membrane potentials of the compartments are:
-
+Combining the two equations leads to a partial differential equation
+that can be solved numerically by a multi-compartmental approximation.
+In a nonbranching cable, each compartment $\mu$ is coupled to two neighbours,
+and the equations for the membrane potentials of the compartments are
 \begin{equation}
    c_m\frac{dV_\mu}{dt}=-i^\mu_m +
-    \frac{I^\mu_e}{A_\mu}+g_{\mu,\mu+1}(V_{\mu+1} -V_\mu)+g_{\mu,\mu-1}(V_{
+    \frac{i^\mu_e}{A_\mu}+g_{\mu,\mu+1}(V_{\mu+1} -V_\mu)+g_{\mu,\mu-1}(V_{
     \mu-1}-V_{\mu}),
 \end{equation}
-where $\mu$ labels the compartments, $I^\mu_e$ is the total electrode
+where $\mu$ labels the compartments, $i^\mu_e$ is the total electrode
 current flowing into the compartment $\mu$, and $A_\mu$ is its surface
 area. The constant $g_{\mu,\mu-1}$ determines the resistive coupling
-of the compartments and for nonbranching cables can be shown to be
-equal to $g_{\mu,\mu-1}=a/(2r_LL^2)$. This defines a system of
-ordinary differential equations which can be solved by generalized Euler
-methods.
+of the compartments and, for nonbranching cables, can be shown to be
+equal to $g_{\mu,\mu-1}=a/(2r_LL^2)$ for a length $L$ of the compartements.
+This defines a system of ordinary differential equations, which can be solved 
+by generalized Euler methods.
 
-\vskip 0.8 true cm
+%\vskip 0.8 true cm
+
+\newpage
 
 \noindent {\bf Problems}
 
 \vskip 0.8 true cm
 
 \begin{enumerate}
-    \item Numerically solve the cable equation for passive membrane
-        (i.e. $i_m=(V-V_{rest})/r_m$). Compare the solution to the analytical
-        solution. Take $r_m=1\mathrm{M\Omega mm^2}$,
+    \item Numerically solve the cable equation (equation~\ref{eq:Cable}) for a
+        passive membrane, i.e. $i_m=(V-V_{rest})/r_m$. Compare the
+        solution to the analytical solution. Take
+        $r_m=1\mathrm{M\Omega mm^2}$ and
         $r_L=1\mathrm{k\Omega mm^2}$.
     \item Implement the Hodgkin-Huxley model of action potential
         propagation. Solve the partial differential equation using the
         Crank-Nicolson method (see e.g. Chapter 6.6B of \cite{dayan2001}).
-        Take $r=0.238$ mm and $r_L=35.4$ $\mathrm{\Omega cm}$.
+        Take $a=0.238$ mm and $r_L=35.4$ $\mathrm{\Omega cm}$.
     \item Initiate an action potential on one end of the axon by
-        inserting a current in the terminal compartment. 
-    \item Determine action potential propagation velocity as a
+        injecting a current in the terminal compartment.
+    \item Determine the action potential propagation velocity as a
         function of the axon radius.
-    \item Generate action potentials from both ends of the axon. Show
+    \item Initiate action potentials at both ends of the axon. Show
         that they annihilate when they collide.
     \item Simulate action potential propagation in a myelinated axon.
 \end{enumerate}
 
 \begin{thebibliography}{7}
-    \bibitem{dayan2001} P Dayan, LF Abbott, ``Theoretical neuroscience'',
+    \bibitem{dayan2001} P Dayan, LF Abbott. Theoretical neuroscience,
         MIT Press 2001
 \end{thebibliography}
 
@@ -151,6 +153,8 @@ urs.bergmann(at)biologie.hu-berlin.de \\
 Matthias Guggenmos & & Email: matthias.guggenmos(at)bccn-berlin.de \\
 Richard Kempter \hfill & Phone: 2093-8925 \hfill & Email:
 r.kempter(at)biologie.hu-berlin.de \\
+Bartosz Telenczuk & Phone: 2093-8838 & Email:
+b.telenczuk(at)biologie.hu-berlin.de \\
 \end{tabular}
 
 \end{document}

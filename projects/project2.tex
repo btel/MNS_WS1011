@@ -103,9 +103,10 @@ generation of output spike times with realistic statistics.
             \tderiv{V}=V_\mathrm{rest}-V+g_\mathrm{exc}(t)(E_{exc}-V)+g_\mathrm{inh}(t)(E_\mathrm{inh}-V)
             \label{eq:lif}
         \end{equation}
-    \item Assume that each presynaptic spike at synapse $a$ results in a sudden
-        change of the post-synaptic conductance, which then decays
-        exponentially until the next input arrives:
+    \item Assume that each presynaptic spike at synapse $a$ $(a=1,..,N)$
+          results in a sudden change $\bar{g}_\mathrm{a}$ of the post-synaptic
+          conductance, which then decays exponentially with time constant
+          $\tau_\mathrm{syn}$ until the next input arrives:
         \begin{equation}
             g_\mathrm{syn} \rightarrow g_\mathrm{syn} +
             \bar{g}_\mathrm{a},\;\text{if } t =
@@ -126,18 +127,18 @@ generation of output spike times with realistic statistics.
         of excitatory synapses $\bar{g}_\mathrm{a}$ (inhibitory
         synapses are not changed) according
         to the rules:
-        \begin{equation} 
+        \begin{equation}
             \bar{g}_\mathrm{a} \rightarrow
             \bar{g}_\mathrm{a}+M(t)\bar{g}_\mathrm{max},\; \;
-            M \rightarrow M - A_-, \; \;
+            P_a \rightarrow P_a + A_+, \; \;
             \text{if } t =
             t_\mathrm{pre}
         \end{equation}
-        \begin{equation} 
+        \begin{equation}
             \bar{g}_\mathrm{a} \rightarrow
             \bar{g}_\mathrm{a}+
             P_a(t)\bar{g}_\mathrm{max},\; \;
-            P_a \rightarrow P_a + A_+, \; \;
+            M \rightarrow M - A_-, \; \;
             \text{if } t =
             t_\mathrm{post}
         \end{equation}
@@ -145,10 +146,10 @@ generation of output spike times with realistic statistics.
         %$M(t)$ is decremented by an amount $A_-$, and every time a
         %synapse receives an action potential from the pre-synaptic
         %neuron, $P(t)$ is incremented by an amount $A_{+}$.
-        If $\bar{g}_\mathrm{a}<0$ the peak conductance is clamped to zero and
+        If $\bar{g}_\mathrm{a}<0$, the peak conductance is clamped to zero, and
         if $\bar{g}_\mathrm{a}>\bar{g}_\mathrm{max}$ it is reset to
         $\overline{g}_\mathrm{max}$. If there are no pre- or
-        post-synaptic spikes $M(t)$ and $P(t)$ decay exponentially:
+        post-synaptic spikes, $M(t)$ and $P(t)$ decay exponentially:
         \begin{equation}
             \tau_{-}\tderiv{M}=-M \text{ and } \tau_{+}\tderiv{P_a}=-P_a.
             \label{eq:stdp}
@@ -160,9 +161,9 @@ generation of output spike times with realistic statistics.
         model with $N=1000$ excitatory and $M=200$ inhibitory synapses,
         both of which receive independent
         Poisson spike trains (10 Hz for inhibitory, 10 -- 40 Hz
-        for excitatory). Plot the final weight distribution for
+        for excitatory). Plot the steady-state weight distribution for
         different excitatory firing rates. Plot the output firing rate
-        and coefficient of variation as a function of the input firing
+        and the coefficient of variation as a function of the input firing
         rate.
 
     \item Simulate the model with inputs consisting of bursts of
@@ -179,11 +180,18 @@ generation of output spike times with realistic statistics.
 
 \vskip 0.8 true cm
 {\bf Literature}
-\vskip 0.8 true cm
+\vskip 0.4 true cm
 
 S.~Song, K.D.~Miller and L.F.~Abbott (2000). Competitive Hebbian learning
 through spike-timing-dependent synaptic plasticity.
 \emph{Nature Neuroscience} 3(9):919-926.\newline
+
+R.~Kempter, W.~Gerstner, J.~L.~van Hemmen (1999). Hebbian learning and spiking
+neurons. \emph{Phys. Rev. E} 59(4):4498-4514.\newline
+
+W.~Gerstner, R.~Kempter, J.~L.~van Hemmen, H.~Wagner (1996). A neuronal
+learning rule for sub-millisecond temporal coding. \emph{Nature},
+383:76-78.\newline
 
 \vfill
 \centerline{\CAP Contact}
@@ -195,6 +203,8 @@ urs.bergmann(at)biologie.hu-berlin.de \\
 Matthias Guggenmos & & Email: matthias.guggenmos(at)bccn-berlin.de \\
 Richard Kempter \hfill & Phone: 2093-8925 \hfill & Email:
 r.kempter(at)biologie.hu-berlin.de \\
+Bartosz Telenczuk & Phone: 2093-8838 & Email:
+b.telenczuk(at)biologie.hu-berlin.de \\
 \end{tabular}
 
 \end{document}

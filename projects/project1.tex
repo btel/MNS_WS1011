@@ -69,7 +69,7 @@
 
 \vskip 0.8 true cm
 {\bf Background}
-\vskip 0.8 true cm
+% \vskip 0.4 true cm
 
  A popular view in neuroscience is that the information in
  the neural systems is encoded by the number of spikes (firing rate).
@@ -95,17 +95,18 @@
         What are the strengths and weaknesses of the paper?
 
     \item Implement the leaky integrate-and-fire model discussed in
-        the computer practical (see exercise sheet 6) with the parameters given
+        the computer practical (see exercise sheet 5) with the parameters given
         in Diesmann et al. (1999). Additionally, introduce the absolute
         refractory period during which the neuron does not respond to
-        the incoming inputs. If required, add a relative refractory
+        the incoming inputs. %If required,
+        Add a relative refractory
         period as described in the paper.
 
 
     \item Model the background activity by injecting a random synaptic
         current whose values are normally distributed. Choose the mean
         and standard deviation of the current such that the neuron is
-        spontaneously active with mean firing rate of 2 Hz and fires
+        spontaneously active with mean firing rate of 2~Hz and fires
         irregularly.
 
     \item The feed-forward inputs are entering the neuron model by
@@ -116,7 +117,7 @@
 
     \item Model the feed-forward inputs with packets of spikes, which
         are simulated by repeatedly drawing $a_\mathrm{in}$ spike times
-        from Gaussian density with standard deviation
+        from a Gaussian density with standard deviation
         $\sigma_\mathrm{in}$ and mean 0.
 
     \item Simulate the response of the neuron. It should respond with at
@@ -137,16 +138,16 @@
         and $\sigma_\mathrm{out}$ for different pairs of
         $a_\mathrm{in}$ and  $\sigma_\mathrm{in}$. Plot the results as
         a vector field. Can you reproduce the results of Diesmann et
-        al. 1999 (Figure 3)? If not, describe and explain the
-        differences.
+        al. 1999 (Figure 3)? Describe and explain possible differences.
 
 \end{enumerate}
 
 \vskip 0.8 true cm
 {\bf Literature} 
-\vskip 0.8 true cm
+\vskip 0.4 true cm
 
-M.~Diesmann, Marc-Oliver~Gewaltig and Ad~Aertsen (1999). Stable propagation of
+Markus~Diesmann, Marc-Oliver~Gewaltig and Ad~Aertsen (1999). Stable propagation
+of
 synchronous spiking in cortical neural networks.
 \emph{Nature} 402(2):529-532.\newline
 
@@ -160,6 +161,8 @@ urs.bergmann(at)biologie.hu-berlin.de \\
 Matthias Guggenmos & & Email: matthias.guggenmos(at)bccn-berlin.de \\
 Richard Kempter \hfill & Phone: 2093-8925 \hfill & Email:
 r.kempter(at)biologie.hu-berlin.de \\
+Bartosz Telenczuk & Phone: 2093-8838 & Email:
+b.telenczuk(at)biologie.hu-berlin.de \\
 \end{tabular}
 
 \end{document}
