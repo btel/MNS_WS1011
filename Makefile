@@ -1,4 +1,4 @@
-FILES  = blatt1.pdf blatt2.pdf blatt3.pdf blatt4.pdf 
+FILES  = blatt1.pdf blatt2.pdf blatt3.pdf blatt4.pdf  blatt5.pdf blatt6.pdf blatt7.pdf blatt8.pdf
 
 all : ${FILES}
 
